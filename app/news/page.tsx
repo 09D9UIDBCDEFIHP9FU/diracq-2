@@ -3,7 +3,11 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { FaSearch, FaCalendarAlt, FaArrowRight } from "react-icons/fa";
+import {
+  FaSearch,
+  FaCalendarAlt,
+  FaArrowRight,
+} from "react-icons/fa";
 import newsData from "@/app/lib/newsData";
 
 const ITEMS_PER_PAGE = 6;
@@ -34,11 +38,7 @@ export default function News() {
 
     return newsData.filter((item) => {
       const title = item.title?.toLowerCase() || "";
-
-      const content =
-        item.content?.toLowerCase() ||
-        item.description?.toLowerCase() ||
-        "";
+      const content = item.content?.toLowerCase() || "";
 
       const matchesSearch =
         search === "" ||
@@ -385,14 +385,11 @@ export default function News() {
                           {article.title}
                         </h3>
 
-                        {/* DESCRIPTION */}
+                        {/* CONTENT */}
 
                         <p className="line-clamp-3 text-sm leading-6 text-gray-400 transition-colors group-hover:text-gray-300">
-
                           {article.content ||
-                            article.description ||
                             "Read the latest updates from DiracQ Systems."}
-
                         </p>
 
                         {/* FOOTER */}
