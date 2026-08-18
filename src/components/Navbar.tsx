@@ -15,12 +15,10 @@ export default function Navbar() {
   // ACTIVE ROUTE CHECK
   // =========================================================
   const isActive = (path: string) => {
-    // Home should ONLY be active on /
     if (path === "/") {
       return pathname === "/";
     }
 
-    // Other pages + their child routes
     return pathname === path || pathname.startsWith(`${path}/`);
   };
 
@@ -49,53 +47,77 @@ export default function Navbar() {
   // =========================================================
   // DESKTOP LINK CLASS
   // =========================================================
-  const navLinkClass = (path: string) => {
-    return `
-      relative
-      text-[16px]
-      xl:text-[18px]
-      font-medium
-      transition-colors
-      duration-300
-      ${
-        isActive(path)
-          ? "text-cyan-400"
-          : "text-white hover:text-cyan-400"
-      }
-    `;
-  };
+  const navLinkClass = (path: string) => `
+    relative
+    text-[16px]
+    xl:text-[18px]
+    font-medium
+    transition-colors
+    duration-300
+    ${
+      isActive(path)
+        ? "text-cyan-400"
+        : "text-white hover:text-cyan-400"
+    }
+  `;
 
   // =========================================================
   // MOBILE LINK CLASS
   // =========================================================
-  const mobileLinkClass = (path: string) => {
-    return `
-      relative
-      font-medium
-      transition-colors
-      duration-300
-      ${
-        isActive(path)
-          ? "text-cyan-400"
-          : "text-white hover:text-cyan-400"
-      }
-    `;
-  };
+  const mobileLinkClass = (path: string) => `
+    relative
+    font-medium
+    transition-colors
+    duration-300
+    ${
+      isActive(path)
+        ? "text-cyan-400"
+        : "text-white hover:text-cyan-400"
+    }
+  `;
 
   return (
-    <header className="fixed top-0 left-0 w-full h-24 z-50">
+    <header className="fixed top-0 left-0 w-full h-24 z-[9999]">
+
       {/* =====================================================
           HEADER BACKGROUND
       ===================================================== */}
-      <div className="absolute inset-0 bg-[#08111f]/90 backdrop-blur-2xl border-b border-cyan-500/10" />
+      <div
+        className="
+          absolute
+          inset-0
+          z-0
+          bg-[#08111f]/95
+          backdrop-blur-2xl
+          border-b
+          border-cyan-500/10
+        "
+      />
 
-      <div className="relative max-w-7xl mx-auto h-full flex items-center justify-between px-6 lg:px-8">
+      {/* =====================================================
+          HEADER CONTENT
+      ===================================================== */}
+      <div
+        className="
+          relative
+          z-10
+          max-w-7xl
+          mx-auto
+          h-full
+          flex
+          items-center
+          justify-between
+          px-6
+          lg:px-8
+        "
+      >
+
         {/* =====================================================
             LOGO
         ===================================================== */}
         <Link
           href="/"
-          className="relative z-[60] flex items-center shrink-0"
+          className="relative z-20 flex items-center shrink-0"
           aria-label="DiracQ Home"
         >
           <Image
@@ -111,7 +133,7 @@ export default function Navbar() {
         {/* =====================================================
             DESKTOP NAVIGATION
         ===================================================== */}
-        <nav className="hidden lg:block">
+        <nav className="relative z-20 hidden lg:block">
           <ul className="flex items-center gap-8 xl:gap-14">
 
             {/* ================= HOME ================= */}
@@ -124,7 +146,17 @@ export default function Navbar() {
                 Home
 
                 {isActive("/") && (
-                  <span className="absolute -bottom-2 left-0 w-full h-[2px] rounded-full bg-cyan-400" />
+                  <span
+                    className="
+                      absolute
+                      -bottom-2
+                      left-0
+                      w-full
+                      h-[2px]
+                      rounded-full
+                      bg-cyan-400
+                    "
+                  />
                 )}
               </Link>
             </li>
@@ -139,7 +171,17 @@ export default function Navbar() {
                 About
 
                 {isActive("/about") && (
-                  <span className="absolute -bottom-2 left-0 w-full h-[2px] rounded-full bg-cyan-400" />
+                  <span
+                    className="
+                      absolute
+                      -bottom-2
+                      left-0
+                      w-full
+                      h-[2px]
+                      rounded-full
+                      bg-cyan-400
+                    "
+                  />
                 )}
               </Link>
             </li>
@@ -148,6 +190,7 @@ export default function Navbar() {
                 PRODUCTS DROPDOWN
             ================================================= */}
             <li className="relative group">
+
               <button
                 type="button"
                 aria-haspopup="true"
@@ -180,9 +223,18 @@ export default function Navbar() {
                   "
                 />
 
-                {/* Products active line */}
                 {isActive("/products") && (
-                  <span className="absolute -bottom-2 left-0 w-full h-[2px] rounded-full bg-cyan-400" />
+                  <span
+                    className="
+                      absolute
+                      -bottom-2
+                      left-0
+                      w-full
+                      h-[2px]
+                      rounded-full
+                      bg-cyan-400
+                    "
+                  />
                 )}
               </button>
 
@@ -192,9 +244,10 @@ export default function Navbar() {
                   absolute
                   top-10
                   left-0
+                  z-[10000]
                   w-64
                   rounded-2xl
-                  bg-[#111827]/98
+                  bg-[#111827]
                   backdrop-blur-xl
                   border
                   border-white/10
@@ -210,7 +263,6 @@ export default function Navbar() {
                   overflow-hidden
                 "
               >
-                {/* Analytics */}
                 <Link
                   href="/products/analytics"
                   className={`
@@ -229,7 +281,6 @@ export default function Navbar() {
                   Analytics Platform
                 </Link>
 
-                {/* Dashboard */}
                 <Link
                   href="/products/dashboard"
                   className={`
@@ -248,7 +299,6 @@ export default function Navbar() {
                   Dashboard
                 </Link>
 
-                {/* AI */}
                 <Link
                   href="/products/ai"
                   className={`
@@ -267,7 +317,6 @@ export default function Navbar() {
                   AI Solutions
                 </Link>
 
-                {/* Cloud */}
                 <Link
                   href="/products/cloud"
                   className={`
@@ -298,7 +347,17 @@ export default function Navbar() {
                 News
 
                 {isActive("/news") && (
-                  <span className="absolute -bottom-2 left-0 w-full h-[2px] rounded-full bg-cyan-400" />
+                  <span
+                    className="
+                      absolute
+                      -bottom-2
+                      left-0
+                      w-full
+                      h-[2px]
+                      rounded-full
+                      bg-cyan-400
+                    "
+                  />
                 )}
               </Link>
             </li>
@@ -313,10 +372,21 @@ export default function Navbar() {
                 Research
 
                 {isActive("/research") && (
-                  <span className="absolute -bottom-2 left-0 w-full h-[2px] rounded-full bg-cyan-400" />
+                  <span
+                    className="
+                      absolute
+                      -bottom-2
+                      left-0
+                      w-full
+                      h-[2px]
+                      rounded-full
+                      bg-cyan-400
+                    "
+                  />
                 )}
               </Link>
             </li>
+
           </ul>
         </nav>
 
@@ -328,7 +398,7 @@ export default function Navbar() {
           onClick={() => setIsMenuOpen((prev) => !prev)}
           className="
             relative
-            z-[60]
+            z-30
             lg:hidden
             text-white
             text-2xl
@@ -356,7 +426,8 @@ export default function Navbar() {
             fixed
             inset-0
             top-24
-            bg-[#08111f]/98
+            z-[9998]
+            bg-[#08111f]
             backdrop-blur-2xl
             transition-all
             duration-300
@@ -381,7 +452,17 @@ export default function Navbar() {
                   Home
 
                   {isActive("/") && (
-                    <span className="absolute -bottom-2 left-0 w-full h-[2px] rounded-full bg-cyan-400" />
+                    <span
+                      className="
+                        absolute
+                        -bottom-2
+                        left-0
+                        w-full
+                        h-[2px]
+                        rounded-full
+                        bg-cyan-400
+                      "
+                    />
                   )}
                 </Link>
               </li>
@@ -397,7 +478,17 @@ export default function Navbar() {
                   About
 
                   {isActive("/about") && (
-                    <span className="absolute -bottom-2 left-0 w-full h-[2px] rounded-full bg-cyan-400" />
+                    <span
+                      className="
+                        absolute
+                        -bottom-2
+                        left-0
+                        w-full
+                        h-[2px]
+                        rounded-full
+                        bg-cyan-400
+                      "
+                    />
                   )}
                 </Link>
               </li>
@@ -413,7 +504,17 @@ export default function Navbar() {
                   Products
 
                   {isActive("/products") && (
-                    <span className="absolute -bottom-2 left-0 w-full h-[2px] rounded-full bg-cyan-400" />
+                    <span
+                      className="
+                        absolute
+                        -bottom-2
+                        left-0
+                        w-full
+                        h-[2px]
+                        rounded-full
+                        bg-cyan-400
+                      "
+                    />
                   )}
                 </Link>
               </li>
@@ -429,7 +530,17 @@ export default function Navbar() {
                   News
 
                   {isActive("/news") && (
-                    <span className="absolute -bottom-2 left-0 w-full h-[2px] rounded-full bg-cyan-400" />
+                    <span
+                      className="
+                        absolute
+                        -bottom-2
+                        left-0
+                        w-full
+                        h-[2px]
+                        rounded-full
+                        bg-cyan-400
+                      "
+                    />
                   )}
                 </Link>
               </li>
@@ -445,7 +556,17 @@ export default function Navbar() {
                   Research
 
                   {isActive("/research") && (
-                    <span className="absolute -bottom-2 left-0 w-full h-[2px] rounded-full bg-cyan-400" />
+                    <span
+                      className="
+                        absolute
+                        -bottom-2
+                        left-0
+                        w-full
+                        h-[2px]
+                        rounded-full
+                        bg-cyan-400
+                      "
+                    />
                   )}
                 </Link>
               </li>
@@ -453,6 +574,7 @@ export default function Navbar() {
             </ul>
           </nav>
         </div>
+
       </div>
     </header>
   );
