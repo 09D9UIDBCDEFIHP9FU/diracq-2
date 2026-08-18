@@ -2,50 +2,102 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FaChevronDown } from "react-icons/fa";
-import { useState } from "react";
-import { FiMenu, FiX } from "react-icons/fi";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { FaChevronDown } from "react-icons/fa";
+import { FiMenu, FiX } from "react-icons/fi";
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Check whether menu item is active
+  // =========================================================
+  // ACTIVE ROUTE CHECK
+  // =========================================================
   const isActive = (path: string) => {
+    // Home should ONLY be active on /
     if (path === "/") {
       return pathname === "/";
     }
 
+    // Other pages + their child routes
     return pathname === path || pathname.startsWith(`${path}/`);
   };
 
-  // Desktop menu classes
+  // =========================================================
+  // CLOSE MOBILE MENU WHEN ROUTE CHANGES
+  // =========================================================
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
+
+  // =========================================================
+  // LOCK BODY SCROLL WHEN MOBILE MENU IS OPEN
+  // =========================================================
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
+  // =========================================================
+  // DESKTOP LINK CLASS
+  // =========================================================
   const navLinkClass = (path: string) => {
-    return isActive(path)
-      ? "relative text-[16px] xl:text-[18px] font-medium text-cyan-400"
-      : "text-[16px] xl:text-[18px] font-medium text-white hover:text-cyan-400 transition duration-300";
+    return `
+      relative
+      text-[16px]
+      xl:text-[18px]
+      font-medium
+      transition-colors
+      duration-300
+      ${
+        isActive(path)
+          ? "text-cyan-400"
+          : "text-white hover:text-cyan-400"
+      }
+    `;
   };
 
-  // Mobile menu classes
+  // =========================================================
+  // MOBILE LINK CLASS
+  // =========================================================
   const mobileLinkClass = (path: string) => {
-    return isActive(path)
-      ? "text-cyan-400 font-medium"
-      : "text-white hover:text-cyan-400 transition font-medium";
+    return `
+      relative
+      font-medium
+      transition-colors
+      duration-300
+      ${
+        isActive(path)
+          ? "text-cyan-400"
+          : "text-white hover:text-cyan-400"
+      }
+    `;
   };
 
   return (
     <header className="fixed top-0 left-0 w-full h-24 z-50">
-      {/* Full Width Glass Background */}
-      <div className="absolute inset-0 bg-[#08111f]/65 backdrop-blur-2xl border-b border-cyan-500/10" />
+      {/* =====================================================
+          HEADER BACKGROUND
+      ===================================================== */}
+      <div className="absolute inset-0 bg-[#08111f]/90 backdrop-blur-2xl border-b border-cyan-500/10" />
 
       <div className="relative max-w-7xl mx-auto h-full flex items-center justify-between px-6 lg:px-8">
-
         {/* =====================================================
             LOGO
         ===================================================== */}
-
-        <Link href="/" className="flex items-center shrink-0">
+        <Link
+          href="/"
+          className="relative z-[60] flex items-center shrink-0"
+          aria-label="DiracQ Home"
+        >
           <Image
             src="/logo/d57cc0_adc62980ca7644c9a5291d88ee7bbb2a~mv2.png"
             alt="DiracQ"
@@ -59,15 +111,15 @@ export default function Navbar() {
         {/* =====================================================
             DESKTOP NAVIGATION
         ===================================================== */}
-
         <nav className="hidden lg:block">
           <ul className="flex items-center gap-8 xl:gap-14">
 
-            {/* HOME */}
+            {/* ================= HOME ================= */}
             <li>
               <Link
                 href="/"
                 className={navLinkClass("/")}
+                aria-current={isActive("/") ? "page" : undefined}
               >
                 Home
 
@@ -77,11 +129,12 @@ export default function Navbar() {
               </Link>
             </li>
 
-            {/* ABOUT */}
+            {/* ================= ABOUT ================= */}
             <li>
               <Link
                 href="/about"
                 className={navLinkClass("/about")}
+                aria-current={isActive("/about") ? "page" : undefined}
               >
                 About
 
@@ -94,72 +147,153 @@ export default function Navbar() {
             {/* =================================================
                 PRODUCTS DROPDOWN
             ================================================= */}
-
             <li className="relative group">
-
               <button
                 type="button"
-                className={`flex items-center gap-2 ${
-                  isActive("/products")
-                    ? "text-cyan-400"
-                    : "text-white hover:text-cyan-400"
-                } text-[16px] xl:text-[18px] font-medium transition duration-300`}
+                aria-haspopup="true"
+                aria-expanded={isActive("/products")}
+                className={`
+                  relative
+                  flex
+                  items-center
+                  gap-2
+                  text-[16px]
+                  xl:text-[18px]
+                  font-medium
+                  transition-colors
+                  duration-300
+                  ${
+                    isActive("/products")
+                      ? "text-cyan-400"
+                      : "text-white hover:text-cyan-400"
+                  }
+                `}
               >
                 Products
 
                 <FaChevronDown
                   size={13}
-                  className="transition-transform duration-300 group-hover:rotate-180"
+                  className="
+                    transition-transform
+                    duration-300
+                    group-hover:rotate-180
+                  "
                 />
+
+                {/* Products active line */}
+                {isActive("/products") && (
+                  <span className="absolute -bottom-2 left-0 w-full h-[2px] rounded-full bg-cyan-400" />
+                )}
               </button>
 
-              {/* Products Dropdown */}
-
-              <div className="absolute top-10 left-0 w-64 rounded-2xl bg-[#111827]/95 backdrop-blur-xl border border-white/10 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 overflow-hidden">
-
+              {/* ================= DROPDOWN ================= */}
+              <div
+                className="
+                  absolute
+                  top-10
+                  left-0
+                  w-64
+                  rounded-2xl
+                  bg-[#111827]/98
+                  backdrop-blur-xl
+                  border
+                  border-white/10
+                  shadow-2xl
+                  opacity-0
+                  invisible
+                  translate-y-2
+                  group-hover:opacity-100
+                  group-hover:visible
+                  group-hover:translate-y-0
+                  transition-all
+                  duration-300
+                  overflow-hidden
+                "
+              >
+                {/* Analytics */}
                 <Link
                   href="/products/analytics"
-                  className="block px-6 py-4 text-white hover:bg-cyan-500/10 hover:text-cyan-400 transition"
+                  className={`
+                    block
+                    px-6
+                    py-4
+                    transition-colors
+                    duration-200
+                    ${
+                      isActive("/products/analytics")
+                        ? "bg-cyan-500/10 text-cyan-400"
+                        : "text-white hover:bg-cyan-500/10 hover:text-cyan-400"
+                    }
+                  `}
                 >
                   Analytics Platform
                 </Link>
 
+                {/* Dashboard */}
                 <Link
                   href="/products/dashboard"
-                  className="block px-6 py-4 text-white hover:bg-cyan-500/10 hover:text-cyan-400 transition"
+                  className={`
+                    block
+                    px-6
+                    py-4
+                    transition-colors
+                    duration-200
+                    ${
+                      isActive("/products/dashboard")
+                        ? "bg-cyan-500/10 text-cyan-400"
+                        : "text-white hover:bg-cyan-500/10 hover:text-cyan-400"
+                    }
+                  `}
                 >
                   Dashboard
                 </Link>
 
+                {/* AI */}
                 <Link
                   href="/products/ai"
-                  className="block px-6 py-4 text-white hover:bg-cyan-500/10 hover:text-cyan-400 transition"
+                  className={`
+                    block
+                    px-6
+                    py-4
+                    transition-colors
+                    duration-200
+                    ${
+                      isActive("/products/ai")
+                        ? "bg-cyan-500/10 text-cyan-400"
+                        : "text-white hover:bg-cyan-500/10 hover:text-cyan-400"
+                    }
+                  `}
                 >
                   AI Solutions
                 </Link>
 
+                {/* Cloud */}
                 <Link
                   href="/products/cloud"
-                  className="block px-6 py-4 text-white hover:bg-cyan-500/10 hover:text-cyan-400 transition"
+                  className={`
+                    block
+                    px-6
+                    py-4
+                    transition-colors
+                    duration-200
+                    ${
+                      isActive("/products/cloud")
+                        ? "bg-cyan-500/10 text-cyan-400"
+                        : "text-white hover:bg-cyan-500/10 hover:text-cyan-400"
+                    }
+                  `}
                 >
                   Cloud Services
                 </Link>
-
               </div>
-
-              {/* Products Active Underline */}
-
-              {isActive("/products") && (
-                <span className="absolute -bottom-2 left-0 w-full h-[2px] rounded-full bg-cyan-400" />
-              )}
-
             </li>
 
-            {/* NEWS */}
+            {/* ================= NEWS ================= */}
             <li>
               <Link
                 href="/news"
                 className={navLinkClass("/news")}
+                aria-current={isActive("/news") ? "page" : undefined}
               >
                 News
 
@@ -169,11 +303,12 @@ export default function Navbar() {
               </Link>
             </li>
 
-            {/* RESEARCH */}
+            {/* ================= RESEARCH ================= */}
             <li>
               <Link
                 href="/research"
                 className={navLinkClass("/research")}
+                aria-current={isActive("/research") ? "page" : undefined}
               >
                 Research
 
@@ -182,19 +317,31 @@ export default function Navbar() {
                 )}
               </Link>
             </li>
-
           </ul>
         </nav>
 
         {/* =====================================================
             MOBILE MENU BUTTON
         ===================================================== */}
-
         <button
           type="button"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="lg:hidden text-white text-2xl p-2 hover:text-cyan-400 transition z-50"
-          aria-label="Toggle menu"
+          onClick={() => setIsMenuOpen((prev) => !prev)}
+          className="
+            relative
+            z-[60]
+            lg:hidden
+            text-white
+            text-2xl
+            p-2
+            rounded-lg
+            hover:text-cyan-400
+            hover:bg-white/5
+            transition-all
+            duration-300
+          "
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-navigation"
         >
           {isMenuOpen ? <FiX /> : <FiMenu />}
         </button>
@@ -202,16 +349,25 @@ export default function Navbar() {
         {/* =====================================================
             MOBILE MENU
         ===================================================== */}
-
         <div
-          className={`lg:hidden fixed inset-0 top-24 bg-[#08111f]/95 backdrop-blur-xl transition-all duration-300 ${
-            isMenuOpen
-              ? "opacity-100 visible"
-              : "opacity-0 invisible"
-          }`}
+          id="mobile-navigation"
+          className={`
+            lg:hidden
+            fixed
+            inset-0
+            top-24
+            bg-[#08111f]/98
+            backdrop-blur-2xl
+            transition-all
+            duration-300
+            ${
+              isMenuOpen
+                ? "opacity-100 visible"
+                : "opacity-0 invisible pointer-events-none"
+            }
+          `}
         >
-          <nav className="h-full flex items-center justify-center">
-
+          <nav className="h-full flex items-start justify-center pt-16">
             <ul className="flex flex-col items-center gap-8 text-xl">
 
               {/* HOME */}
@@ -220,8 +376,13 @@ export default function Navbar() {
                   href="/"
                   onClick={() => setIsMenuOpen(false)}
                   className={mobileLinkClass("/")}
+                  aria-current={isActive("/") ? "page" : undefined}
                 >
                   Home
+
+                  {isActive("/") && (
+                    <span className="absolute -bottom-2 left-0 w-full h-[2px] rounded-full bg-cyan-400" />
+                  )}
                 </Link>
               </li>
 
@@ -231,8 +392,13 @@ export default function Navbar() {
                   href="/about"
                   onClick={() => setIsMenuOpen(false)}
                   className={mobileLinkClass("/about")}
+                  aria-current={isActive("/about") ? "page" : undefined}
                 >
                   About
+
+                  {isActive("/about") && (
+                    <span className="absolute -bottom-2 left-0 w-full h-[2px] rounded-full bg-cyan-400" />
+                  )}
                 </Link>
               </li>
 
@@ -242,8 +408,13 @@ export default function Navbar() {
                   href="/products"
                   onClick={() => setIsMenuOpen(false)}
                   className={mobileLinkClass("/products")}
+                  aria-current={isActive("/products") ? "page" : undefined}
                 >
                   Products
+
+                  {isActive("/products") && (
+                    <span className="absolute -bottom-2 left-0 w-full h-[2px] rounded-full bg-cyan-400" />
+                  )}
                 </Link>
               </li>
 
@@ -253,8 +424,13 @@ export default function Navbar() {
                   href="/news"
                   onClick={() => setIsMenuOpen(false)}
                   className={mobileLinkClass("/news")}
+                  aria-current={isActive("/news") ? "page" : undefined}
                 >
                   News
+
+                  {isActive("/news") && (
+                    <span className="absolute -bottom-2 left-0 w-full h-[2px] rounded-full bg-cyan-400" />
+                  )}
                 </Link>
               </li>
 
@@ -264,16 +440,19 @@ export default function Navbar() {
                   href="/research"
                   onClick={() => setIsMenuOpen(false)}
                   className={mobileLinkClass("/research")}
+                  aria-current={isActive("/research") ? "page" : undefined}
                 >
                   Research
+
+                  {isActive("/research") && (
+                    <span className="absolute -bottom-2 left-0 w-full h-[2px] rounded-full bg-cyan-400" />
+                  )}
                 </Link>
               </li>
 
             </ul>
-
           </nav>
         </div>
-
       </div>
     </header>
   );
