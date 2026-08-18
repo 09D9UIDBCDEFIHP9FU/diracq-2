@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
+import Navbar from "@/components/Navbar";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -2795,15 +2796,19 @@ function ContactCTA() {
 export default function HomePage() {
   return (
     <>
-      <Hero />
-      <TrustedBy />
-      <About />
-      <Services />
-      <WhyChoose />
-      <Industries />
-      <Research />
-      <News />
-      <ContactCTA />
+      <Navbar />
+
+      <main className="relative w-full overflow-x-hidden">
+        <Hero />
+        <TrustedBy />
+        <About />
+        <Services />
+        <WhyChoose />
+        <Industries />
+        <Research />
+        <News />
+        <ContactCTA />
+      </main>
     </>
   );
 }
