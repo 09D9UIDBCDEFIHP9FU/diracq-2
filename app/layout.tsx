@@ -14,10 +14,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-slate-950 text-white">
+      <body>
         <Navbar />
 
-        {children}
+        <main className="min-h-screen bg-[#0A0F1E] text-white">
+          {children}
+        </main>
 
         <Footer />
       </body>

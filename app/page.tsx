@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import Navbar from "@/components/Navbar";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -165,8 +164,21 @@ function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-[#0A0F1E] overflow-hidden py-20 lg:py-28">
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
+<section
+  className="
+    relative
+    min-h-screen
+    w-full
+    flex
+    items-center
+    justify-center
+    bg-[#0A0F1E]
+    overflow-hidden
+    py-20
+    lg:py-28
+  "
+>
+        <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
 
       <motion.div
         initial={{ scale: 0, opacity: 0 }}
@@ -2795,20 +2807,16 @@ function ContactCTA() {
 // ---------------------- Main Page (All Components) ----------------------
 export default function HomePage() {
   return (
-    <>
-      <Navbar />
-
-      <main className="relative w-full overflow-x-hidden">
-        <Hero />
-        <TrustedBy />
-        <About />
-        <Services />
-        <WhyChoose />
-        <Industries />
-        <Research />
-        <News />
-        <ContactCTA />
-      </main>
-    </>
+    <main className="relative w-full overflow-x-hidden bg-[#0A0F1E]">
+      <Hero />
+      <TrustedBy />
+      <About />
+      <Services />
+      <WhyChoose />
+      <Industries />
+      <Research />
+      <News />
+      <ContactCTA />
+    </main>
   );
 }
