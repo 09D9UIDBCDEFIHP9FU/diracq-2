@@ -2,6 +2,8 @@
 
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
+// ADDED LINK IMPORT HERE
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
   FaRocket,
@@ -24,9 +26,13 @@ import {
   FaFlask,
   FaMicroscope,
   FaCalendarAlt,
+  FaCogs,
+  FaBolt,
+  FaLightbulb,
+  FaRegLightbulb,
 } from "react-icons/fa";
 
-// ---------------------- Hero Component (FULLY CLEAN) ----------------------
+// ---------------------- Hero Component ----------------------
 function Hero() {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -36,7 +42,6 @@ function Hero() {
     },
   };
   const easeOut = [0.22, 1, 0.36, 1] as const;
-  const easeInOut = [0.42, 0, 0.58, 1] as const;
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -51,62 +56,62 @@ function Hero() {
     <section
       className="
         relative
-        min-h-screen
+        min-h-[85vh]
         w-full
         flex
         items-center
         justify-center
         bg-[#0A0F1E]
         overflow-hidden
-        py-20
-        lg:py-28
+        pt-24
+        pb-8
+        lg:pt-32
+        xl:pt-30
+        2xl:pt-40
+        md:pt-28
+        sm:pt-20
       "
     >
-      {/* Simple background - no particles, no grid, no scanning lines */}
       <div className="absolute inset-0 bg-[#0A0F1E]" />
-
-      {/* Only one subtle gradient orb - removed others */}
       <div className="absolute w-[300px] h-[300px] bg-cyan-500/5 blur-[100px] rounded-full -top-20 -left-20" />
 
-      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center z-10 pt-20 pb-16 lg:pt-24 lg:pb-20">
+      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-6 lg:gap-8 items-center z-10 pt-2 pb-2">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="space-y-6"
+          className="space-y-3"
         >
           <motion.h1
             variants={itemVariants}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-white"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold leading-[1.1] text-white"
           >
-            Dive Into the
+            Enabling Precision
             <br />
-            New Age of
+            Photon Detection
             <br />
             <span className="relative z-10 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              Accelerated
-              <br />
-              Analytics
+              for the Quantum Era
             </span>
           </motion.h1>
-          <br />
           <motion.p
             variants={itemVariants}
             className="text-gray-300 text-base md:text-lg max-w-xl leading-relaxed"
           >
-            Empower your business with AI-driven analytics, real-time
-            dashboards, predictive intelligence, and data automation.
+            High‑performance SPAD detector modules engineered for quantum
+            communication, sensing, imaging and advanced photonics research.
           </motion.p>
-          <br />
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 pt-2">
-            <motion.button
-              type="button"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              className="relative flex items-center justify-center w-full sm:w-52 h-12 overflow-hidden rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold text-base"
-            >
-              <span className="relative z-10">Explore Platform</span>
-            </motion.button>
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 pt-1">
+            {/* FIXED: Request Technical Brief */}
+            <Link href="/contact">
+              <motion.div
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="relative flex items-center justify-center w-full sm:w-52 h-12 overflow-hidden rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold text-base cursor-pointer"
+              >
+                <span className="relative z-10">Request Technical Brief</span>
+              </motion.div>
+            </Link>
           </motion.div>
         </motion.div>
 
@@ -118,8 +123,8 @@ function Hero() {
         >
           <div className="relative w-full rounded-xl border border-white/10 shadow-2xl overflow-hidden bg-[#1A1F35]">
             <img
-              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center"
-              alt="Analytics Dashboard"
+              src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop&crop=center"
+              alt="Quantum Photon Detection Technology"
               className="w-full h-auto object-cover"
               onError={(e) => (e.currentTarget.style.display = "none")}
             />
@@ -130,40 +135,32 @@ function Hero() {
   );
 }
 
-// ---------------------- TrustedBy Component ----------------------
-function TrustedBy() {
-  const stats = [
-    { label: "Active Users", value: 15000, suffix: "+" },
-    { label: "Countries", value: 120, suffix: "+" },
-    { label: "Enterprise Clients", value: 500, suffix: "+" },
-    { label: "Satisfaction Rate", value: 98, suffix: "%" },
+// ---------------------- Our Technology Component ----------------------
+function OurTechnology() {
+  // ... (No changes needed in this section)
+  const features = [
+    {
+      icon: <FaMicrochip />,
+      title: "Device Physics",
+      description:
+        "Optimized semiconductor junction profiles for high-sensitivity photon detection.",
+      color: "from-cyan-400 to-blue-400",
+    },
+    {
+      icon: <FaBolt />,
+      title: "Avalanche Dynamics",
+      description:
+        "Fast and controlled avalanche buildup for precise photon arrival detection.",
+      color: "from-purple-400 to-pink-400",
+    },
+    {
+      icon: <FaCogs />,
+      title: "Quenching Architecture",
+      description:
+        "Rapid avalanche suppression and detector reset for reliable photon counting.",
+      color: "from-orange-400 to-yellow-400",
+    },
   ];
-
-  const [counts, setCounts] = useState(stats.map(() => 0));
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
-
-  useEffect(() => {
-    if (isInView && !hasAnimated) {
-      setHasAnimated(true);
-      const intervals = stats.map((stat, index) => {
-        return setInterval(() => {
-          setCounts((prev) => {
-            const newCounts = [...prev];
-            if (newCounts[index] < stat.value) {
-              newCounts[index] = Math.min(
-                newCounts[index] + Math.ceil(stat.value / 40),
-                stat.value
-              );
-            }
-            return newCounts;
-          });
-        }, 25);
-      });
-      return () => intervals.forEach((interval) => clearInterval(interval));
-    }
-  }, [isInView, hasAnimated]);
 
   const easeOut = [0.22, 1, 0.36, 1] as const;
 
@@ -182,103 +179,146 @@ function TrustedBy() {
       transition: { duration: 0.6, ease: easeOut },
     },
   };
-  const headerVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: easeOut },
-    },
-  };
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative py-24 overflow-hidden bg-gradient-to-br from-[#0a0e1a] via-[#1a1f35] to-[#0d1225]"
-    >
-      <motion.div
-        className="absolute inset-0 opacity-30"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.3 }}
-        transition={{ duration: 1.5 }}
-      >
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500 rounded-full blur-3xl animate-pulse" />
-      </motion.div>
+    <section className="relative min-h-[70vh] flex items-center justify-center bg-[#0A0F1E] overflow-hidden py-12 lg:py-16 xl:py-20">
+      <div className="absolute inset-0 bg-[#0A0F1E]" />
 
-      <div className="container mx-auto px-4 relative z-10">
-        <br />
+      <div className="relative w-full max-w-7xl mx-auto px-6 z-10">
         <motion.div
-          className="flex flex-col items-center text-center mb-16"
-          variants={headerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: easeOut }}
+          className="text-center mb-4 lg:mb-6"
         >
-          <span className="inline-block text-blue-400 text-sm font-semibold tracking-[0.2em] uppercase mb-4 border border-blue-400/20 px-4 py-1.5 rounded-full">
-            Trust & Reliability
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-1 tracking-tight">
-            Trusted by{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Global Organizations
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="flex items-center justify-center gap-2 mb-2"
+          >
+            <span className="h-2 w-2 bg-cyan-500 rounded-full animate-pulse" />
+            <span className="text-cyan-400 uppercase tracking-[4px] text-sm font-medium">
+              Our Technology
             </span>
-          </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto text-center">
-            Join 10,000+ companies worldwide using our platform to drive
-            intelligent business growth
-          </p>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.1]"
+          >
+            Precision Photon
+            <br />
+            <span className="relative inline-block">
+              <span className="relative z-10 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                Detection Technology
+              </span>
+            </span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-gray-400 mt-2 max-w-3xl mx-auto text-base md:text-lg leading-relaxed"
+          >
+            DIRACQ develops photon detection modules optimized for precise single‑photon
+            measurements, achieving high photon detection efficiency, low dark count
+            rates, and picosecond‑scale timing resolution.
+          </motion.p>
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
           variants={containerVariants}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5"
         >
-          {stats.map((stat, index) => (
+          {features.map((feature, index) => (
             <motion.div
               key={index}
-              className="group relative bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-5 text-center hover:bg-white/10 transition-all duration-500 hover:border-blue-400/30 hover:scale-105 hover:shadow-xl"
               variants={itemVariants}
-              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              whileHover={{
+                y: -5,
+                scale: 1.02,
+                transition: { duration: 0.3 },
+              }}
+              className="group relative bg-[#1E293B] border border-white/10 rounded-2xl p-5 hover:border-cyan-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/10 flex flex-col"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-500/5 to-purple-500/0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative">
-                <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-0.5">
-                  {counts[index]}
-                  {stat.suffix}
-                </div>
-                <div className="text-gray-400 text-xs font-medium uppercase tracking-wider">
-                  {stat.label}
-                </div>
-              </div>
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-cyan-500/5 to-blue-500/5" />
+              <motion.div
+                whileHover={{ rotate: 360, scale: 1.1 }}
+                transition={{ duration: 0.6 }}
+                className={`relative z-10 w-12 h-12 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center text-xl text-white mb-3 shadow-lg flex-shrink-0`}
+              >
+                {feature.icon}
+              </motion.div>
+              <h3 className="relative z-10 text-xl font-semibold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
+                {feature.title}
+              </h3>
+              <p className="relative z-10 text-gray-400 leading-5 group-hover:text-gray-300 transition-colors duration-300 flex-grow text-sm">
+                {feature.description}
+              </p>
             </motion.div>
           ))}
         </motion.div>
-        <br />
-        <br />
       </div>
     </section>
   );
 }
 
-// ---------------------- About Component ----------------------
-function About() {
-  const features = [
-    { icon: FaBrain, text: "AI-Powered Data Analytics" },
-    { icon: FaChartLine, text: "Real-Time Dashboard" },
-    { icon: FaRocket, text: "Predictive Intelligence" },
-    { icon: FaShieldAlt, text: "Enterprise Grade Security" },
+// ---------------------- Products Component ----------------------
+function Products() {
+  // FIXED: Added href to product objects
+  const products = [
+    {
+      icon: <FaMicrochip />,
+      title: "SPAD Modules",
+      description:
+        "Silicon-based single photon avalanche diode modules optimized for visible wavelengths, offering low dark count rates and high timing precision for photon counting applications.",
+      color: "from-cyan-400 to-blue-400",
+      href: "/products/spad-modules",
+    },
+    {
+      icon: <FaRegLightbulb />,
+      title: "InGaAs Detectors",
+      description:
+        "Near-infrared photon detectors designed for telecom wavelengths (1310–1550 nm), suitable for quantum communication and fiber-based photonics systems.",
+      color: "from-purple-400 to-pink-400",
+      href: "/products/ingaas-detectors",
+    },
+    {
+      icon: <FaBolt />,
+      title: "SNSPD Systems",
+      description:
+        "Superconducting nanowire single photon detectors providing ultra-low noise and high detection efficiency for advanced quantum optics experiments.",
+      color: "from-orange-400 to-yellow-400",
+      href: "/products/snspd-systems",
+    },
+    {
+      icon: <FaLightbulb />,
+      title: "Tunable Laser Sources",
+      description:
+        "Precision tunable laser systems for calibration, characterization, and controlled photon generation in photonics and quantum experiments.",
+      color: "from-green-400 to-emerald-400",
+      href: "/products/tunable-lasers",
+    },
   ];
 
   const easeOut = [0.22, 1, 0.36, 1] as const;
-  const easeInOut = [0.42, 0, 0.58, 1] as const;
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.2, delayChildren: 0.3 },
+      transition: { staggerChildren: 0.1, delayChildren: 0.3 },
     },
   };
   const itemVariants = {
@@ -291,130 +331,153 @@ function About() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-[#0A0F1E] overflow-hidden py-20 lg:py-28">
+    <section className="relative min-h-[70vh] flex items-center justify-center bg-[#0A0F1E] overflow-hidden py-12 lg:py-16 xl:py-20">
       <div className="absolute inset-0 bg-[#0A0F1E]" />
 
-      <div className="relative w-full max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center z-10">
+      <div className="relative w-full max-w-7xl mx-auto px-6 z-10">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: easeOut }}
-          className="relative"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: easeOut }}
+          className="text-center mb-4 lg:mb-6"
         >
-          <div className="relative w-full rounded-xl border border-white/10 shadow-2xl overflow-hidden bg-[#1A1F35]">
-            <img
-              src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop&crop=center"
-              alt="About DiracQ"
-              className="w-full h-auto object-cover"
-              onError={(e) => (e.currentTarget.style.display = "none")}
-            />
-          </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="flex items-center justify-center gap-2 mb-2"
+          >
+            <span className="h-2 w-2 bg-cyan-500 rounded-full animate-pulse" />
+            <span className="text-cyan-400 uppercase tracking-[4px] text-sm font-medium">
+              Products
+            </span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.1]"
+          >
+            Photon Detection
+            <br />
+            <span className="relative inline-block">
+              <span className="relative z-10 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                Solutions
+              </span>
+            </span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-gray-400 mt-2 max-w-3xl mx-auto text-base md:text-lg leading-relaxed"
+          >
+            DIRACQ offers a comprehensive range of photon detection modules and
+            systems designed for quantum communication, sensing, imaging, and
+            advanced photonics research.
+          </motion.p>
         </motion.div>
 
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
-          className="space-y-6"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5"
         >
-          <motion.div variants={itemVariants} className="flex items-center gap-2">
-            <span className="h-2 w-2 bg-cyan-500 rounded-full animate-pulse" />
-            <span className="text-cyan-400 text-sm font-mono tracking-wider">
-              ABOUT DIRACQ
-            </span>
-          </motion.div>
-
-          <motion.h3
-            variants={itemVariants}
-            className="text-3xl sm:text-2xl md:text-3xl lg:text-3xl font-bold leading-[1.1] text-white"
-          >
-            Accelerate Business
-            <br />
-            Growth Through{" "}
-            <span className="relative inline-block">
-              <span className="relative z-10 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Intelligent
-                <br />
-                Analytics
-              </span>
-            </span>
-          </motion.h3>
-
-          <motion.p
-            variants={itemVariants}
-            className="text-gray-300 text-base md:text-lg max-w-xl leading-relaxed"
-          >
-            DiracQ empowers organizations with AI-driven analytics, predictive
-            insights, and real-time business intelligence. Our platform
-            transforms complex data into clear, actionable decisions that help
-            businesses innovate faster.
-          </motion.p>
-
-          <motion.div
-            variants={itemVariants}
-            className="grid sm:grid-cols-2 gap-4 pt-2"
-          >
-            {features.map((feature, index) => (
+          {products.map((product, index) => (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              whileHover={{
+                y: -5,
+                scale: 1.02,
+                transition: { duration: 0.3 },
+              }}
+              className="group relative bg-[#1E293B] border border-white/10 rounded-2xl p-5 hover:border-cyan-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/10 flex flex-col"
+            >
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-cyan-500/5 to-blue-500/5" />
               <motion.div
-                key={index}
-                variants={itemVariants}
-                whileHover={{ scale: 1.05, x: 5 }}
-                className="flex items-center gap-3 group cursor-pointer"
+                whileHover={{ rotate: 360, scale: 1.1 }}
+                transition={{ duration: 0.6 }}
+                className={`relative z-10 w-12 h-12 rounded-2xl bg-gradient-to-br ${product.color} flex items-center justify-center text-xl text-white mb-3 shadow-lg flex-shrink-0`}
               >
-                <div className="p-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
-                  <feature.icon className="text-cyan-400 text-lg" />
-                </div>
-                <span className="text-white text-sm font-medium group-hover:text-cyan-400 transition-colors">
-                  {feature.text}
-                </span>
+                {product.icon}
               </motion.div>
-            ))}
-          </motion.div>
+              <h3 className="relative z-10 text-xl font-semibold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
+                {product.title}
+              </h3>
+              <p className="relative z-10 text-gray-400 leading-5 group-hover:text-gray-300 transition-colors duration-300 flex-grow text-sm">
+                {product.description}
+              </p>
+              
+              {/* FIXED: Learn More Link */}
+              <Link href={product.href}>
+                <motion.div
+                  whileHover={{ x: 5 }}
+                  className="relative z-10 mt-3 text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-2 group/btn text-sm cursor-pointer"
+                >
+                  <span>Learn More</span>
+                  <motion.span
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                    className="inline-block"
+                  >
+                    →
+                  </motion.span>
+                </motion.div>
+              </Link>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
   );
 }
 
-// ---------------------- Services Component ----------------------
-function Services() {
-  const services = [
+// ---------------------- WhyChoose Component ----------------------
+// ... (No changes needed in this section - no buttons)
+function WhyChoose() {
+  const features = [
     {
-      icon: <FaChartLine />,
-      title: "Business Analytics",
+      icon: <FaProjectDiagram />,
+      title: "End-to-End Design Expertise",
       description:
-        "Transform raw data into meaningful insights through interactive dashboards.",
+        "From semiconductor device physics and TCAD modelling to system-level integration, DIRACQ develops complete photon detection solutions with deep expertise across the entire stack.",
       color: "from-cyan-400 to-blue-400",
     },
     {
-      icon: <FaRobot />,
-      title: "AI Automation",
+      icon: <FaRocket />,
+      title: "High Performance & Scalability",
       description:
-        "Automate repetitive workflows using advanced AI and machine learning.",
+        "Our modules are engineered for high sensitivity and precision while remaining scalable for both advanced research environments and future commercial deployment.",
       color: "from-purple-400 to-pink-400",
     },
     {
-      icon: <FaDatabase />,
-      title: "Big Data Solutions",
-      description: "Manage and process large-scale enterprise data efficiently.",
+      icon: <FaBrain />,
+      title: "AI-Enhanced Signal Processing",
+      description:
+        "DIRACQ integrates intelligent signal processing techniques, including ANN-based models, to enhance signal discrimination, reduce noise, and improve photon detection reliability.",
       color: "from-orange-400 to-yellow-400",
     },
     {
-      icon: <FaCloud />,
-      title: "Cloud Integration",
-      description: "Secure cloud connectivity with real-time synchronization.",
+      icon: <FaCogs />,
+      title: "Customizable Architecture",
+      description:
+        "Detector configurations can be tailored for specific wavelength ranges, timing requirements, and application domains, ensuring optimal performance across diverse use cases.",
       color: "from-green-400 to-emerald-400",
     },
     {
-      icon: <FaShieldAlt />,
-      title: "Cyber Security",
-      description: "Enterprise-grade protection for your business-critical data.",
-      color: "from-red-400 to-pink-400",
-    },
-    {
-      icon: <FaProjectDiagram />,
-      title: "Digital Transformation",
-      description: "Modernize business operations with AI-powered technologies.",
+      icon: <FaChartLine />,
+      title: "Indigenous Technology",
+      description:
+        "Developed in India, DIRACQ promotes self-reliant innovation with cost-effective, high-performance photon detection systems tailored for domestic and global needs.",
       color: "from-indigo-400 to-purple-400",
     },
   ];
@@ -438,7 +501,7 @@ function Services() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-[#0A0F1E] overflow-hidden py-20 lg:py-28">
+    <section className="relative min-h-[70vh] flex items-center justify-center bg-[#0A0F1E] overflow-hidden py-12 lg:py-16 xl:py-20">
       <div className="absolute inset-0 bg-[#0A0F1E]" />
 
       <div className="relative w-full max-w-7xl mx-auto px-6 z-10">
@@ -447,18 +510,18 @@ function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: easeOut }}
-          className="text-center mb-16 lg:mb-20"
+          className="text-center mb-4 lg:mb-6"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex items-center justify-center gap-2 mb-4"
+            className="flex items-center justify-center gap-2 mb-2"
           >
             <span className="h-2 w-2 bg-cyan-500 rounded-full animate-pulse" />
             <span className="text-cyan-400 uppercase tracking-[4px] text-sm font-medium">
-              Our Services
+              Why Choose DIRACQ
             </span>
           </motion.div>
 
@@ -467,13 +530,13 @@ function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1]"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.1]"
           >
-            Intelligent Services
+            Innovation in
             <br />
             <span className="relative inline-block">
               <span className="relative z-10 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                for Every Business
+                Photon Detection
               </span>
             </span>
           </motion.h2>
@@ -483,10 +546,11 @@ function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-gray-400 mt-6 max-w-3xl mx-auto text-base md:text-lg leading-relaxed"
+            className="text-gray-400 mt-2 max-w-3xl mx-auto text-base md:text-lg leading-relaxed"
           >
-            Our services combine artificial intelligence, cloud technologies,
-            automation, and enterprise analytics to accelerate business growth.
+            DIRACQ combines indigenous innovation with advanced photonics engineering
+            to deliver high-performance photon detection systems tailored for modern
+            quantum and scientific applications.
           </motion.p>
         </motion.div>
 
@@ -495,219 +559,33 @@ function Services() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-        >
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              whileHover={{
-                y: -10,
-                scale: 1.02,
-                transition: { duration: 0.3 },
-              }}
-              className="group relative bg-[#1E293B] border border-white/10 rounded-2xl p-8 hover:border-cyan-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/10 flex flex-col"
-            >
-              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-cyan-500/5 to-blue-500/5" />
-              <motion.div
-                whileHover={{ rotate: 360, scale: 1.1 }}
-                transition={{ duration: 0.6 }}
-                className={`relative z-10 w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center text-3xl text-white mb-6 shadow-lg flex-shrink-0`}
-              >
-                {service.icon}
-              </motion.div>
-              <h3 className="relative z-10 text-2xl font-semibold text-white mb-4 group-hover:text-cyan-400 transition-colors duration-300">
-                {service.title}
-              </h3>
-              <p className="relative z-10 text-gray-400 leading-7 group-hover:text-gray-300 transition-colors duration-300 flex-grow">
-                {service.description}
-              </p>
-              <motion.button
-                whileHover={{ x: 5 }}
-                className="relative z-10 mt-6 text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-2 group/btn"
-              >
-                <span>Learn More</span>
-                <motion.span
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                  className="inline-block"
-                >
-                  →
-                </motion.span>
-              </motion.button>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-center mt-16 lg:mt-20"
-        >
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="inline-flex flex-wrap items-center justify-center gap-4 bg-[#1E293B] border border-white/10 rounded-full px-6 py-3 hover:border-cyan-400/50 transition-all duration-300"
-          >
-            <span className="text-white font-medium text-sm md:text-base">
-              Ready to transform your business?
-            </span>
-            <motion.button
-              whileHover={{ x: 5 }}
-              className="bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-2 rounded-full text-white font-semibold text-sm whitespace-nowrap"
-            >
-              Get Started →
-            </motion.button>
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-// ---------------------- WhyChoose Component ----------------------
-function WhyChoose() {
-  const features = [
-    {
-      icon: <FaRobot />,
-      title: "AI Automation",
-      description:
-        "Automate repetitive tasks with intelligent AI-powered workflows.",
-      color: "from-cyan-400 to-blue-400",
-    },
-    {
-      icon: <FaChartPie />,
-      title: "Real-Time Analytics",
-      description:
-        "Track business performance with interactive dashboards and live insights.",
-      color: "from-purple-400 to-pink-400",
-    },
-    {
-      icon: <FaLock />,
-      title: "Enterprise Security",
-      description:
-        "Protect your critical business data with advanced security standards.",
-      color: "from-orange-400 to-yellow-400",
-    },
-    {
-      icon: <FaCloud />,
-      title: "Cloud Platform",
-      description: "Access your analytics securely from anywhere, anytime.",
-      color: "from-green-400 to-emerald-400",
-    },
-  ];
-
-  const easeOut = [0.22, 1, 0.36, 1] as const;
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.3 },
-    },
-  };
-  const itemVariants = {
-    hidden: { opacity: 0, scale: 0.5 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.8, ease: easeOut },
-    },
-  };
-
-  return (
-    <section className="relative min-h-screen flex items-center justify-center bg-[#0A0F1E] overflow-hidden py-20 lg:py-28">
-      <div className="absolute inset-0 bg-[#0A0F1E]" />
-
-      <div className="relative w-full max-w-7xl mx-auto px-6 z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: easeOut }}
-          className="text-center mb-16 lg:mb-20"
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex items-center justify-center gap-2 mb-4"
-          >
-            <span className="h-2 w-2 bg-cyan-500 rounded-full animate-pulse" />
-            <span className="text-cyan-400 uppercase tracking-[4px] text-sm font-medium">
-              Why Choose Us
-            </span>
-          </motion.div>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1]"
-          >
-            Built for
-            <br />
-            <span className="relative inline-block">
-              <span className="relative z-10 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Enterprise Growth
-              </span>
-            </span>
-          </motion.h2>
-        </motion.div>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5"
         >
           {features.map((feature, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
               whileHover={{
-                scale: 1.05,
                 y: -5,
+                scale: 1.02,
                 transition: { duration: 0.3 },
               }}
-              className="group relative flex flex-col items-center text-center"
+              className="group relative bg-[#1E293B] border border-white/10 rounded-2xl p-5 hover:border-cyan-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/10 flex flex-col"
             >
-              <div className="relative">
-                <motion.div
-                  whileHover={{
-                    rotate: 360,
-                    scale: 1.1,
-                  }}
-                  transition={{ duration: 0.6 }}
-                  className={`relative w-32 h-32 rounded-full bg-gradient-to-br ${feature.color}/20 border ${feature.color}/30 flex items-center justify-center text-5xl text-white shadow-xl mx-auto`}
-                >
-                  <span className="relative z-10 group-hover:scale-110 transition-transform duration-300">
-                    {feature.icon}
-                  </span>
-                </motion.div>
-              </div>
-              <motion.h3
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 + index * 0.1 }}
-                className="text-2xl font-semibold text-white mt-6 mb-3 group-hover:text-cyan-400 transition-colors duration-300"
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-cyan-500/5 to-blue-500/5" />
+              <motion.div
+                whileHover={{ rotate: 360, scale: 1.1 }}
+                transition={{ duration: 0.6 }}
+                className={`relative z-10 w-12 h-12 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center text-xl text-white mb-3 shadow-lg flex-shrink-0`}
               >
+                {feature.icon}
+              </motion.div>
+              <h3 className="relative z-10 text-lg font-semibold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
                 {feature.title}
-              </motion.h3>
-              <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 + index * 0.1 }}
-                className="text-gray-400 leading-7 group-hover:text-gray-300 transition-colors duration-300 max-w-sm"
-              >
+              </h3>
+              <p className="relative z-10 text-gray-400 leading-5 group-hover:text-gray-300 transition-colors duration-300 flex-grow text-sm">
                 {feature.description}
-              </motion.p>
+              </p>
             </motion.div>
           ))}
         </motion.div>
@@ -716,55 +594,34 @@ function WhyChoose() {
   );
 }
 
-// ---------------------- Industries Component ----------------------
-function Industries() {
-  const industries = [
+// ---------------------- Applications Component ----------------------
+// ... (No changes needed in this section - no buttons)
+function Applications() {
+  const applications = [
     {
-      icon: <FaIndustry />,
-      title: "Manufacturing",
+      icon: <FaCloud />,
+      title: "Quantum Communication",
       description:
-        "Optimize production, monitor operations, and reduce downtime with AI analytics.",
+        "Single photon detectors are critical for quantum key distribution (QKD) systems where information is encoded in individual photons. DIRACQ detectors enable secure communication by reliably detecting quantum signals with minimal noise.",
       color: "from-cyan-400 to-blue-400",
     },
     {
-      icon: <FaHeartbeat />,
-      title: "Healthcare",
+      icon: <FaMicroscope />,
+      title: "LiDAR & TOF",
       description:
-        "Improve patient care with predictive analytics and intelligent reporting.",
-      color: "from-pink-400 to-rose-400",
+        "Photon-counting LiDAR combined with Time-of-Flight (TOF) techniques enables precise distance measurement by capturing the arrival time of individual photons. DIRACQ detectors support high-resolution 3D mapping, long-range sensing, and next-generation autonomous navigation systems.",
+      color: "from-purple-400 to-pink-400",
     },
     {
-      icon: <FaShoppingCart />,
-      title: "Retail",
+      icon: <FaFlask />,
+      title: "Scientific Research",
       description:
-        "Understand customer behavior and increase sales through real-time insights.",
+        "DIRACQ detectors are widely applicable in experimental physics and photonics research, including quantum optics, time-correlated single photon counting (TCSPC), and low-light measurement systems. Their high sensitivity and timing precision make them ideal for laboratory and advanced instrumentation use.",
       color: "from-orange-400 to-yellow-400",
-    },
-    {
-      icon: <FaUniversity />,
-      title: "Finance",
-      description:
-        "Detect fraud, analyze risks, and improve financial performance.",
-      color: "from-green-400 to-emerald-400",
-    },
-    {
-      icon: <FaTruck />,
-      title: "Logistics",
-      description:
-        "Track fleets, optimize routes, and streamline supply chains.",
-      color: "from-purple-400 to-indigo-400",
-    },
-    {
-      icon: <FaMicrochip />,
-      title: "Technology",
-      description:
-        "Leverage AI to accelerate innovation and improve business decisions.",
-      color: "from-red-400 to-pink-400",
     },
   ];
 
   const easeOut = [0.22, 1, 0.36, 1] as const;
-  const easeInOut = [0.42, 0, 0.58, 1] as const;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -774,17 +631,16 @@ function Industries() {
     },
   };
   const itemVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.9 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
       transition: { duration: 0.6, ease: easeOut },
     },
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-[#0A0F1E] overflow-hidden py-20 lg:py-28">
+    <section className="relative min-h-[65vh] flex items-center justify-center bg-[#0A0F1E] overflow-hidden py-12 lg:py-16 xl:py-20">
       <div className="absolute inset-0 bg-[#0A0F1E]" />
 
       <div className="relative w-full max-w-7xl mx-auto px-6 z-10">
@@ -793,18 +649,18 @@ function Industries() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: easeOut }}
-          className="text-center mb-16 lg:mb-20"
+          className="text-center mb-4 lg:mb-6"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex items-center justify-center gap-2 mb-4"
+            className="flex items-center justify-center gap-2 mb-2"
           >
             <span className="h-2 w-2 bg-cyan-500 rounded-full animate-pulse" />
             <span className="text-cyan-400 uppercase tracking-[4px] text-sm font-medium">
-              Industries
+              Applications
             </span>
           </motion.div>
 
@@ -813,16 +669,28 @@ function Industries() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1]"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.1]"
           >
-            Industries
+            Advanced Photonics
             <br />
             <span className="relative inline-block">
               <span className="relative z-10 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                We Serve
+                Applications
               </span>
             </span>
           </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-gray-400 mt-2 max-w-3xl mx-auto text-base md:text-lg leading-relaxed"
+          >
+            DIRACQ photon detection technologies enable a wide range of advanced
+            scientific and industrial systems where extremely low light levels
+            must be measured with high precision and timing accuracy.
+          </motion.p>
         </motion.div>
 
         <motion.div
@@ -830,37 +698,32 @@ function Industries() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5"
         >
-          {industries.map((industry, index) => (
+          {applications.map((app, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
               whileHover={{
-                y: -12,
+                y: -5,
+                scale: 1.02,
                 transition: { duration: 0.3 },
               }}
-              className="group relative bg-gradient-to-br from-[#1E293B] to-[#0F172A] rounded-2xl p-8 border border-white/5 hover:border-cyan-400/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/10 overflow-hidden cursor-pointer"
+              className="group relative bg-[#1E293B] border border-white/10 rounded-2xl p-5 hover:border-cyan-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/10 flex flex-col"
             >
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-cyan-500/5 to-blue-500/5" />
               <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: easeInOut,
-                  delay: index * 0.2,
-                }}
-                className={`relative z-10 w-16 h-16 rounded-2xl bg-gradient-to-br ${industry.color} 
-                  flex items-center justify-center text-3xl text-white mb-6 shadow-lg 
-                  group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}
+                whileHover={{ rotate: 360, scale: 1.1 }}
+                transition={{ duration: 0.6 }}
+                className={`relative z-10 w-12 h-12 rounded-2xl bg-gradient-to-br ${app.color} flex items-center justify-center text-xl text-white mb-3 shadow-lg flex-shrink-0`}
               >
-                {industry.icon}
+                {app.icon}
               </motion.div>
-              <h3 className="relative z-10 text-2xl font-semibold text-white mb-4">
-                {industry.title}
+              <h3 className="relative z-10 text-xl font-semibold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
+                {app.title}
               </h3>
-              <p className="relative z-10 text-gray-400 leading-7 group-hover:text-gray-200 transition-colors duration-300">
-                {industry.description}
+              <p className="relative z-10 text-gray-400 leading-5 group-hover:text-gray-300 transition-colors duration-300 flex-grow text-sm">
+                {app.description}
               </p>
             </motion.div>
           ))}
@@ -871,9 +734,9 @@ function Industries() {
 }
 
 // ---------------------- Research Component ----------------------
+// ... (No changes needed in this section - no buttons)
 function Research() {
   const easeOut = [0.22, 1, 0.36, 1] as const;
-  const easeInOut = [0.42, 0, 0.58, 1] as const;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -892,69 +755,69 @@ function Research() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-[#0A0F1E] overflow-hidden py-20 lg:py-28">
+    <section className="relative min-h-[65vh] flex items-center justify-center bg-[#0A0F1E] overflow-hidden py-12 lg:py-16 xl:py-20">
       <div className="absolute inset-0 bg-[#0A0F1E]" />
 
       <div className="relative w-full max-w-7xl mx-auto px-6 z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="space-y-6"
+            className="space-y-3"
           >
             <motion.div variants={itemVariants} className="flex items-center gap-2">
               <span className="h-2 w-2 bg-cyan-500 rounded-full animate-pulse" />
               <span className="text-cyan-400 uppercase tracking-[4px] text-sm font-medium">
-                Research & Innovation
+                Research & Publications
               </span>
             </motion.div>
 
             <motion.h2
               variants={itemVariants}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1]"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.1]"
             >
-              Shaping the
+              Advancing
               <br />
               <span className="relative inline-block">
                 <span className="relative z-10 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                  Future of AI
+                  Photon Detection
                   <br />
-                  Analytics
+                  Technology
                 </span>
               </span>
             </motion.h2>
-            <br />
             <motion.p
               variants={itemVariants}
               className="text-gray-300 text-base md:text-lg max-w-xl leading-relaxed"
             >
-              Our research team continuously develops advanced AI models,
-              predictive analytics, and intelligent automation to help
-              organizations make smarter and faster business decisions.
+              DIRACQ develops advanced photon detection systems through device
+              physics modelling, TCAD simulation, and experimental validation.
+              Our research focuses on improving photon detection efficiency,
+              minimizing dark count rates, and enhancing timing resolution for
+              next‑generation quantum technologies.
             </motion.p>
-            <br />
             <motion.div
               variants={itemVariants}
-              className="grid grid-cols-2 gap-4 pt-2"
+              className="grid grid-cols-2 gap-3 pt-1"
             >
               {[
                 { value: "15+", label: "Research Projects", icon: <FaFlask /> },
                 {
                   value: "98%",
-                  label: "Prediction Accuracy",
+                  label: "Detection Efficiency",
                   icon: <FaMicroscope />,
                 },
               ].map((stat, index) => (
                 <motion.div
                   key={index}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  className="group relative bg-[#1E293B] border border-white/10 rounded-2xl p-6 hover:border-cyan-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/10"
+                  whileHover={{ scale: 1.05, y: -3 }}
+                  className="group relative bg-[#1E293B] border border-white/10 rounded-2xl p-4 hover:border-cyan-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/10"
                 >
                   <div className="relative z-10">
-                    <div className="text-3xl text-cyan-400 mb-2">{stat.icon}</div>
-                    <h3 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                    <div className="text-2xl text-cyan-400 mb-1">{stat.icon}</div>
+                    <h3 className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                       {stat.value}
                     </h3>
                     <p className="text-gray-400 mt-1 text-sm group-hover:text-gray-300 transition-colors">
@@ -999,25 +862,25 @@ function News() {
       image:
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center",
       date: "28 July 2026",
-      title: "How AI is Transforming Business Intelligence",
+      title: "DIRACQ Founder Meets Quantum Technology Leaders",
       description:
-        "Discover how artificial intelligence is reshaping analytics and helping organizations make better decisions.",
+        "The DIRACQ founding team recently met with leading researchers in quantum photonics to explore future collaborations in photon detection and quantum sensing technologies.",
     },
     {
       image:
         "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=600&fit=crop&crop=center",
       date: "20 July 2026",
-      title: "Predictive Analytics for Modern Enterprises",
+      title: "Research Collaboration Announced",
       description:
-        "Learn how predictive models improve forecasting, reduce costs, and increase operational efficiency.",
+        "DIRACQ has initiated a collaborative research effort with academic partners to advance SPAD device design and optimize avalanche detection performance through TCAD simulation and experimental validation.",
     },
     {
       image:
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=center",
       date: "12 July 2026",
-      title: "Cloud Analytics: The Future of Data",
+      title: "Prototype Development Milestone",
       description:
-        "Explore how cloud-native analytics platforms enable secure, scalable, and real-time business insights.",
+        "The team has successfully completed the initial design phase of its next‑generation photon detection module, paving the way for prototype fabrication and system integration.",
     },
   ];
 
@@ -1040,7 +903,7 @@ function News() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-[#0A0F1E] overflow-hidden py-20 lg:py-28">
+    <section className="relative min-h-[65vh] flex items-center justify-center bg-[#0A0F1E] overflow-hidden py-8 lg:py-10 xl:py-12">
       <div className="absolute inset-0 bg-[#0A0F1E]" />
 
       <div className="relative w-full max-w-7xl mx-auto px-6 z-10">
@@ -1049,14 +912,14 @@ function News() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: easeOut }}
-          className="text-center mb-16 lg:mb-20"
+          className="text-center mb-4 lg:mb-6"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex items-center justify-center gap-2 mb-4"
+            className="flex items-center justify-center gap-2 mb-2"
           >
             <span className="h-2 w-2 bg-cyan-500 rounded-full animate-pulse" />
             <span className="text-cyan-400 uppercase tracking-[4px] text-sm font-medium">
@@ -1069,16 +932,27 @@ function News() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1]"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.1]"
           >
-            Insights
+            News
             <br />
             <span className="relative inline-block">
               <span className="relative z-10 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                & Resources
+                & Updates
               </span>
             </span>
           </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-gray-400 mt-2 max-w-3xl mx-auto text-base md:text-lg leading-relaxed"
+          >
+            Stay updated with the latest news, research collaborations, and
+            development milestones from DIRACQ.
+          </motion.p>
         </motion.div>
 
         <motion.div
@@ -1086,14 +960,14 @@ function News() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5"
         >
           {news.map((item, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
               whileHover={{
-                y: -10,
+                y: -5,
                 scale: 1.02,
                 transition: { duration: 0.3 },
               }}
@@ -1103,36 +977,40 @@ function News() {
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-44 object-cover transition-transform duration-500 group-hover:scale-105"
                   onError={(e) => {
                     e.currentTarget.style.display = "none";
                   }}
                 />
               </div>
-              <div className="relative z-10 p-6 flex flex-col flex-grow">
-                <div className="flex items-center gap-2 text-gray-400 text-sm mb-3">
+              <div className="relative z-10 p-4 flex flex-col flex-grow">
+                <div className="flex items-center gap-2 text-gray-400 text-xs mb-2">
                   <FaCalendarAlt className="text-cyan-400 text-xs" />
                   <span>{item.date}</span>
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-cyan-400 transition-colors duration-300 line-clamp-2">
+                <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300 line-clamp-2">
                   {item.title}
                 </h3>
-                <p className="text-gray-400 text-sm leading-7 group-hover:text-gray-300 transition-colors duration-300 flex-grow line-clamp-3">
+                <p className="text-gray-400 text-sm leading-5 group-hover:text-gray-300 transition-colors duration-300 flex-grow line-clamp-3">
                   {item.description}
                 </p>
-                <motion.button
-                  whileHover={{ x: 5 }}
-                  className="relative z-10 mt-4 text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-2 group/btn text-sm"
-                >
-                  <span>Read More</span>
-                  <motion.span
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                    className="inline-block"
+                
+                {/* FIXED: Read More Link */}
+                <Link href="/news">
+                  <motion.div
+                    whileHover={{ x: 5 }}
+                    className="relative z-10 mt-3 text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-2 group/btn text-sm cursor-pointer"
                   >
-                    <FaArrowRight />
-                  </motion.span>
-                </motion.button>
+                    <span>Read More</span>
+                    <motion.span
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                      className="inline-block"
+                    >
+                      <FaArrowRight />
+                    </motion.span>
+                  </motion.div>
+                </Link>
               </div>
             </motion.div>
           ))}
@@ -1163,8 +1041,9 @@ function ContactCTA() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-[#0A0F1E] overflow-hidden py-20 lg:py-28">
+    <section className="relative min-h-[40vh] flex items-center justify-center bg-[#0A0F1E] overflow-hidden py-6 lg:py-8 xl:py-10">
       <div className="absolute inset-0 bg-[#0A0F1E]" />
+      <div className="absolute w-96 h-96 bg-cyan-500/5 blur-[150px] rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
 
       <div className="relative w-full max-w-7xl mx-auto px-6 z-10">
         <motion.div
@@ -1172,56 +1051,52 @@ function ContactCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-center mt-16 lg:mt-20"
+          className="text-center"
         >
           <div className="relative inline-block">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 tracking-tight">
-              Let's Build the <br />
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="flex items-center justify-center gap-2 mb-3"
+            >
+              <span className="h-2 w-2 bg-cyan-500 rounded-full animate-pulse" />
+              <span className="text-cyan-400 uppercase tracking-[4px] text-sm font-medium">
+                Contact
+              </span>
+            </motion.div>
+
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2 tracking-tight">
+              For collaborations, technical inquiries,
+              <br />
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Future with AI Together
+                or partnership opportunities.
               </span>
             </h2>
-            <br />
-            <p className="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-              Ready to unlock the full potential of your business? Connect with
-              our experts and discover how DiracQ can transform your data into
-              actionable insights.
-            </p>
-            <br />
+
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="flex flex-col sm:flex-row justify-center gap-4"
+              className="flex flex-col sm:flex-row justify-center gap-3 mt-4"
             >
-              <motion.button
-                variants={itemVariants}
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 0 40px rgba(6, 182, 212, 0.3)",
-                }}
-                whileTap={{ scale: 0.95 }}
-                className="relative group bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-4 rounded-full font-semibold text-white transition-all duration-300 overflow-hidden text-sm md:text-base"
-              >
-                <span className="relative z-10">Book a Demo</span>
-              </motion.button>
-
-              <motion.button
-                variants={itemVariants}
-                whileHover={{ scale: 1.05, borderColor: "#06B6D4" }}
-                whileTap={{ scale: 0.95 }}
-                className="relative group border border-white/20 hover:border-cyan-400 px-8 py-4 rounded-full font-semibold text-white transition-all duration-300 overflow-hidden text-sm md:text-base inline-flex items-center justify-center gap-3"
-              >
-                <span className="relative z-10">Contact Us</span>
-                <motion.span
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                  className="relative z-10"
+              
+              {/* FIXED: Contact Us Link */}
+              <Link href="/contact">
+                <motion.div
+                  variants={itemVariants}
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: "0 0 40px rgba(6, 182, 212, 0.3)",
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  className="relative group bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3 rounded-full font-semibold text-white transition-all duration-300 overflow-hidden text-sm md:text-base cursor-pointer inline-block"
                 >
-                  <FaArrowRight />
-                </motion.span>
-              </motion.button>
+                  <span className="relative z-10">Contact Us</span>
+                </motion.div>
+              </Link>
             </motion.div>
           </div>
         </motion.div>
@@ -1235,11 +1110,10 @@ export default function HomePage() {
   return (
     <main className="relative w-full overflow-x-hidden bg-[#0A0F1E]">
       <Hero />
-      <TrustedBy />
-      <About />
-      <Services />
+      <OurTechnology />
+      <Products />
       <WhyChoose />
-      <Industries />
+      <Applications />
       <Research />
       <News />
       <ContactCTA />

@@ -186,7 +186,7 @@ export default function News() {
           {/* Badge */}
 
           <span className="mb-5 inline-block rounded-full border border-cyan-400/30 px-5 py-2 text-xs font-medium uppercase tracking-[4px] text-cyan-400">
-            News & Insights
+            News & Updates
           </span>
 
           {/* Heading */}
@@ -196,14 +196,14 @@ export default function News() {
             <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
               News
             </span>{" "}
-            & Resources
+            & Insights
           </h1>
 
           {/* Description */}
 
           <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-gray-400 md:text-lg">
-            Stay updated with the latest trends in AI,
-            analytics, and business intelligence.
+            Stay updated with the latest developments in photon detection,
+            quantum technologies, and photonics research from DIRACQ.
           </p>
 
         </motion.div>
@@ -335,7 +335,7 @@ export default function News() {
 
                           <div className="flex h-full w-full items-center justify-center bg-[#172033]">
                             <span className="text-sm text-gray-500">
-                              DiracQ Systems
+                              DIRACQ Systems
                             </span>
                           </div>
 
@@ -389,7 +389,7 @@ export default function News() {
 
                         <p className="line-clamp-3 text-sm leading-6 text-gray-400 transition-colors group-hover:text-gray-300">
                           {article.content ||
-                            "Read the latest updates from DiracQ Systems."}
+                            "Read the latest updates from DIRACQ Systems."}
                         </p>
 
                         {/* FOOTER */}
@@ -398,7 +398,7 @@ export default function News() {
 
                           <span className="text-xs text-gray-500">
                             {article.author ||
-                              "DiracQ Team"}
+                              "DIRACQ Team"}
                           </span>
 
                           <span className="inline-flex items-center gap-2 text-sm font-medium text-cyan-400 transition-transform duration-300 group-hover:translate-x-1">

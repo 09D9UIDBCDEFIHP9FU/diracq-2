@@ -1,12 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { FormEvent } from "react";
-import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaClock, FaLinkedin, FaTwitter, FaGlobe } from "react-icons/fa";
 
 export default function Contact() {
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -26,8 +24,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="min-h-screen bg-[#0A0F1E] py-20 px-4 relative overflow-hidden">
-      {/* Gradient Orbs */}
+    <section className="min-h-screen bg-[#0A0F1E] pt-52 pb-20 px-4 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute w-[600px] h-[600px] bg-cyan-500/20 blur-[150px] rounded-full -top-40 -left-40" />
         <div className="absolute w-[500px] h-[500px] bg-blue-600/20 blur-[150px] rounded-full -bottom-40 -right-20" />
@@ -40,34 +37,32 @@ export default function Contact() {
         animate="visible"
         className="relative z-10 max-w-5xl mx-auto"
       >
-        {/* Header */}
         <motion.div variants={itemVariants} className="text-center mb-12">
           <span className="text-cyan-400 uppercase tracking-[4px] text-sm font-medium border border-cyan-400/20 px-4 py-1.5 rounded-full inline-block mb-4">
             Contact Us
           </span>
           <h1 className="text-4xl md:text-5xl font-bold text-white">
-            Let’s{" "}
+            Let&rsquo;s{" "}
             <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
               Connect
             </span>
           </h1>
           <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
-            Questions, partnerships, or demos — we’d love to hear from you.
+            Questions, partnerships, or demos — we&rsquo;d love to hear from you.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-          {/* Contact Form */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+          {/* LEFT CARD: Form */}
           <motion.section
             variants={itemVariants}
-            className="bg-[#1E293B] border border-white/10 rounded-2xl p-6 md:p-8 hover:border-cyan-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/10"
+            className="h-full bg-[#1E293B] border border-white/10 rounded-2xl p-6 md:p-8 hover:border-cyan-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/10 flex flex-col"
           >
             <h2 className="text-xl font-semibold text-white mb-4">Get in touch</h2>
             <form
-              className="space-y-4"
+              className="space-y-4 flex-grow flex flex-col"
               onSubmit={(e: FormEvent) => {
                 e.preventDefault();
-                // Handle form submission
               }}
             >
               <motion.div variants={formFieldVariants}>
@@ -94,7 +89,7 @@ export default function Contact() {
                   className="mt-1 block w-full bg-[#0A0F1E] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-colors resize-none"
                 />
               </motion.div>
-              <motion.div variants={formFieldVariants} className="pt-2">
+              <motion.div variants={formFieldVariants} className="pt-2 mt-auto">
                 <motion.button
                   whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(6,182,212,0.3)" }}
                   whileTap={{ scale: 0.95 }}
@@ -106,7 +101,6 @@ export default function Contact() {
               </motion.div>
             </form>
 
-            {/* Contact details */}
             <motion.div
               variants={formFieldVariants}
               className="mt-6 pt-6 border-t border-white/10 text-sm text-gray-400 space-y-2"
@@ -119,39 +113,82 @@ export default function Contact() {
               </p>
               <p className="flex items-center gap-2">
                 <FaPhone className="text-cyan-400" />
-                <span>+1 (555) 123-4567</span>
+                <span>+91 98765 43210</span>
               </p>
             </motion.div>
           </motion.section>
 
-          {/* Office Info */}
+          {/* RIGHT CARD: Map + Contact Related Info */}
           <motion.aside
             variants={itemVariants}
-            className="bg-[#1E293B] border border-white/10 rounded-2xl overflow-hidden hover:border-cyan-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/10"
+            className="h-full bg-[#1E293B] border border-white/10 rounded-2xl overflow-hidden hover:border-cyan-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/10 flex flex-col"
           >
-            <div className="relative h-64 w-full">
-              <Image
-                src="https://images.unsplash.com/photo-1520975661367-6a1d25f2d0b1?w=1200&q=80"
-                alt="Office"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              {/* Overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F1E] via-transparent to-transparent" />
+            {/* Map */}
+            <div className="relative h-64 w-full bg-[#0A0F1E] flex-shrink-0">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.8121625656263!2d77.36794041508353!3d28.627269382416397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce54f2d0b6de3%3A0x8ba6e5b7db40a4e1!2sSector%2062%2C%20Noida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1690000000000!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Noida Sector 62 Map"
+              ></iframe>
             </div>
-            <div className="p-6">
-              <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                <FaMapMarkerAlt className="text-cyan-400" />
-                Visit our office
-              </h3>
-              <p className="mt-2 text-sm text-gray-400 leading-relaxed">
-                123 Innovation Way, Suite 400
-                <br />
-                San Francisco, CA
-              </p>
-              <div className="mt-4 text-sm text-gray-400">
-                <span className="text-cyan-400">●</span> Mon–Fri, 9:00–18:00
+
+            {/* Contact Info */}
+            <div className="p-6 flex-grow flex flex-col justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+                  <FaMapMarkerAlt className="text-cyan-400" />
+                  Visit our office
+                </h3>
+                <p className="mt-2 text-sm text-gray-400 leading-relaxed">
+                  Sector 62, Noida,
+                  <br />
+                  Uttar Pradesh, India
+                </p>
+                
+                <div className="mt-4 text-sm text-gray-400">
+                  <span className="text-cyan-400">●</span> Mon–Fri, 9:00–18:00
+                </div>
+              </div>
+
+              {/* Extra Info Boxes to Fill Empty Space */}
+              <div className="mt-6 space-y-4">
+                <div className="bg-[#0A0F1E] border border-white/5 rounded-xl p-4">
+                  <h4 className="text-sm font-semibold text-cyan-400 flex items-center gap-2 mb-2">
+                    <FaClock className="text-xs" /> Emergency Support
+                  </h4>
+                  <p className="text-xs text-gray-400 leading-relaxed">
+                    Need urgent technical assistance? Our support desk is available 24/7 for critical issues.
+                  </p>
+                </div>
+
+                <div className="bg-[#0A0F1E] border border-white/5 rounded-xl p-4">
+                  <h4 className="text-sm font-semibold text-cyan-400 flex items-center gap-2 mb-2">
+                    <FaGlobe className="text-xs" /> Quick Links
+                  </h4>
+                  <div className="flex flex-col gap-1 text-xs text-gray-400">
+                    <a href="mailto:hello@diracq.ai" className="hover:text-cyan-400 transition-colors flex items-center gap-2">
+                      <FaEnvelope className="text-cyan-400" /> hello@diracq.ai
+                    </a>
+                    <a href="tel:+919876543210" className="hover:text-cyan-400 transition-colors flex items-center gap-2">
+                      <FaPhone className="text-cyan-400" /> +91 98765 43210
+                    </a>
+                  </div>
+                </div>
+
+                {/* Social Media */}
+                <div className="flex items-center gap-3 pt-2">
+                  <a href="#" className="w-10 h-10 rounded-full bg-[#0A0F1E] border border-white/10 flex items-center justify-center text-gray-400 hover:text-cyan-400 hover:border-cyan-400/50 transition-all duration-300">
+                    <FaLinkedin />
+                  </a>
+                  <a href="#" className="w-10 h-10 rounded-full bg-[#0A0F1E] border border-white/10 flex items-center justify-center text-gray-400 hover:text-cyan-400 hover:border-cyan-400/50 transition-all duration-300">
+                    <FaTwitter />
+                  </a>
+                </div>
               </div>
             </div>
           </motion.aside>

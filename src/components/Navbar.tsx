@@ -12,7 +12,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // =========================================================
-  // ACTIVE ROUTE CHECK
+  // ACTIVE ROUTE
   // =========================================================
   const isActive = (path: string) => {
     if (path === "/") {
@@ -23,7 +23,7 @@ export default function Navbar() {
   };
 
   // =========================================================
-  // CLOSE MOBILE MENU WHEN ROUTE CHANGES
+  // CLOSE MOBILE MENU ON ROUTE CHANGE
   // =========================================================
   useEffect(() => {
     setIsMenuOpen(false);
@@ -45,13 +45,14 @@ export default function Navbar() {
   }, [isMenuOpen]);
 
   // =========================================================
-  // DESKTOP LINK CLASS
+  // DESKTOP NAV LINK
   // =========================================================
   const navLinkClass = (path: string) => `
     relative
     text-[16px]
     xl:text-[18px]
     font-medium
+    whitespace-nowrap
     transition-colors
     duration-300
     ${
@@ -62,10 +63,11 @@ export default function Navbar() {
   `;
 
   // =========================================================
-  // MOBILE LINK CLASS
+  // MOBILE NAV LINK
   // =========================================================
   const mobileLinkClass = (path: string) => `
     relative
+    text-lg
     font-medium
     transition-colors
     duration-300
@@ -77,8 +79,16 @@ export default function Navbar() {
   `;
 
   return (
-    <header className="fixed top-0 left-0 w-full h-24 z-[9999]">
-
+    <header
+      className="
+        fixed
+        top-0
+        left-0
+        w-full
+        h-24
+        z-[9999]
+      "
+    >
       {/* =====================================================
           HEADER BACKGROUND
       ===================================================== */}
@@ -95,34 +105,40 @@ export default function Navbar() {
       />
 
       {/* =====================================================
-          HEADER CONTENT
+          MAIN HEADER CONTAINER
       ===================================================== */}
       <div
         className="
           relative
           z-10
-          max-w-7xl
-          mx-auto
+          w-full
+          max-w-[1400px]
           h-full
+          mx-auto
+          px-6
+          lg:px-8
           flex
           items-center
           justify-between
-          px-6
-          lg:px-8
         "
       >
-
-        {/* =====================================================
+        {/* ===================================================
             LOGO
-        ===================================================== */}
+        =================================================== */}
         <Link
           href="/"
-          className="relative z-20 flex items-center shrink-0"
+          className="
+            relative
+            z-20
+            flex
+            items-center
+            shrink-0
+          "
           aria-label="DiracQ Home"
         >
           <Image
             src="/logo/d57cc0_adc62980ca7644c9a5291d88ee7bbb2a~mv2.png"
-            alt="DiracQ"
+            alt="DiracQ Systems"
             width={150}
             height={65}
             priority
@@ -130,13 +146,21 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* =====================================================
+        {/* ===================================================
             DESKTOP NAVIGATION
-        ===================================================== */}
+        =================================================== */}
         <nav className="relative z-20 hidden lg:block">
-          <ul className="flex items-center gap-8 xl:gap-14">
-
-            {/* ================= HOME ================= */}
+          <ul
+            className="
+              flex
+              items-center
+              gap-7
+              xl:gap-10
+            "
+          >
+            {/* =================================================
+                HOME
+            ================================================= */}
             <li>
               <Link
                 href="/"
@@ -149,8 +173,8 @@ export default function Navbar() {
                   <span
                     className="
                       absolute
-                      -bottom-2
                       left-0
+                      -bottom-2
                       w-full
                       h-[2px]
                       rounded-full
@@ -161,12 +185,16 @@ export default function Navbar() {
               </Link>
             </li>
 
-            {/* ================= ABOUT ================= */}
+            {/* =================================================
+                ABOUT
+            ================================================= */}
             <li>
               <Link
                 href="/about"
                 className={navLinkClass("/about")}
-                aria-current={isActive("/about") ? "page" : undefined}
+                aria-current={
+                  isActive("/about") ? "page" : undefined
+                }
               >
                 About
 
@@ -174,8 +202,8 @@ export default function Navbar() {
                   <span
                     className="
                       absolute
-                      -bottom-2
                       left-0
+                      -bottom-2
                       w-full
                       h-[2px]
                       rounded-full
@@ -190,11 +218,8 @@ export default function Navbar() {
                 PRODUCTS DROPDOWN
             ================================================= */}
             <li className="relative group">
-
               <button
                 type="button"
-                aria-haspopup="true"
-                aria-expanded={isActive("/products")}
                 className={`
                   relative
                   flex
@@ -203,6 +228,7 @@ export default function Navbar() {
                   text-[16px]
                   xl:text-[18px]
                   font-medium
+                  whitespace-nowrap
                   transition-colors
                   duration-300
                   ${
@@ -211,11 +237,13 @@ export default function Navbar() {
                       : "text-white hover:text-cyan-400"
                   }
                 `}
+                aria-haspopup="true"
+                aria-expanded={isActive("/products")}
               >
                 Products
 
                 <FaChevronDown
-                  size={13}
+                  size={12}
                   className="
                     transition-transform
                     duration-300
@@ -227,8 +255,8 @@ export default function Navbar() {
                   <span
                     className="
                       absolute
-                      -bottom-2
                       left-0
+                      -bottom-2
                       w-full
                       h-[2px]
                       rounded-full
@@ -238,16 +266,18 @@ export default function Navbar() {
                 )}
               </button>
 
-              {/* ================= DROPDOWN ================= */}
+              {/* =================================================
+                  PRODUCTS DROPDOWN MENU
+              ================================================= */}
               <div
                 className="
                   absolute
-                  top-10
-                  left-0
-                  z-[10000]
-                  w-64
-                  rounded-2xl
-                  bg-[#111827]
+                  top-[calc(100%+18px)]
+                  left-1/2
+                  -translate-x-1/2
+                  w-[200px]
+                  rounded-xl
+                  bg-[#111827]/98
                   backdrop-blur-xl
                   border
                   border-white/10
@@ -261,88 +291,93 @@ export default function Navbar() {
                   transition-all
                   duration-300
                   overflow-hidden
+                  z-[10000]
                 "
               >
+                {/* SPAD */}
                 <Link
-                  href="/products/analytics"
-                  className={`
+                  href="/products/spad-modules"
+                  className="
                     block
-                    px-6
-                    py-4
+                    px-5
+                    py-3.5
+                    text-[16px]
+                    font-medium
+                    text-white
+                    hover:bg-cyan-500/10
+                    hover:text-cyan-400
                     transition-colors
-                    duration-200
-                    ${
-                      isActive("/products/analytics")
-                        ? "bg-cyan-500/10 text-cyan-400"
-                        : "text-white hover:bg-cyan-500/10 hover:text-cyan-400"
-                    }
-                  `}
+                  "
                 >
-                  Analytics Platform
+                  SPAD Modules
                 </Link>
 
+                {/* InGaAs */}
                 <Link
-                  href="/products/dashboard"
-                  className={`
+                  href="/products/ingaas-detectors"
+                  className="
                     block
-                    px-6
-                    py-4
+                    px-5
+                    py-3.5
+                    text-[16px]
+                    font-medium
+                    text-white
+                    hover:bg-cyan-500/10
+                    hover:text-cyan-400
                     transition-colors
-                    duration-200
-                    ${
-                      isActive("/products/dashboard")
-                        ? "bg-cyan-500/10 text-cyan-400"
-                        : "text-white hover:bg-cyan-500/10 hover:text-cyan-400"
-                    }
-                  `}
+                  "
                 >
-                  Dashboard
+                  InGaAs Detectors
                 </Link>
 
+                {/* SNSPD */}
                 <Link
-                  href="/products/ai"
-                  className={`
+                  href="/products/snspd-systems"
+                  className="
                     block
-                    px-6
-                    py-4
+                    px-5
+                    py-3.5
+                    text-[16px]
+                    font-medium
+                    text-white
+                    hover:bg-cyan-500/10
+                    hover:text-cyan-400
                     transition-colors
-                    duration-200
-                    ${
-                      isActive("/products/ai")
-                        ? "bg-cyan-500/10 text-cyan-400"
-                        : "text-white hover:bg-cyan-500/10 hover:text-cyan-400"
-                    }
-                  `}
+                  "
                 >
-                  AI Solutions
+                  SNSPD Systems
                 </Link>
 
+                {/* Tunable Lasers */}
                 <Link
-                  href="/products/cloud"
-                  className={`
+                  href="/products/tunable-lasers"
+                  className="
                     block
-                    px-6
-                    py-4
+                    px-5
+                    py-3.5
+                    text-[16px]
+                    font-medium
+                    text-white
+                    hover:bg-cyan-500/10
+                    hover:text-cyan-400
                     transition-colors
-                    duration-200
-                    ${
-                      isActive("/products/cloud")
-                        ? "bg-cyan-500/10 text-cyan-400"
-                        : "text-white hover:bg-cyan-500/10 hover:text-cyan-400"
-                    }
-                  `}
+                  "
                 >
-                  Cloud Services
+                  Tunable Lasers
                 </Link>
               </div>
             </li>
 
-            {/* ================= NEWS ================= */}
+            {/* =================================================
+                NEWS
+            ================================================= */}
             <li>
               <Link
                 href="/news"
                 className={navLinkClass("/news")}
-                aria-current={isActive("/news") ? "page" : undefined}
+                aria-current={
+                  isActive("/news") ? "page" : undefined
+                }
               >
                 News
 
@@ -350,8 +385,8 @@ export default function Navbar() {
                   <span
                     className="
                       absolute
-                      -bottom-2
                       left-0
+                      -bottom-2
                       w-full
                       h-[2px]
                       rounded-full
@@ -362,12 +397,16 @@ export default function Navbar() {
               </Link>
             </li>
 
-            {/* ================= RESEARCH ================= */}
+            {/* =================================================
+                RESEARCH
+            ================================================= */}
             <li>
               <Link
                 href="/research"
                 className={navLinkClass("/research")}
-                aria-current={isActive("/research") ? "page" : undefined}
+                aria-current={
+                  isActive("/research") ? "page" : undefined
+                }
               >
                 Research
 
@@ -375,8 +414,8 @@ export default function Navbar() {
                   <span
                     className="
                       absolute
-                      -bottom-2
                       left-0
+                      -bottom-2
                       w-full
                       h-[2px]
                       rounded-full
@@ -387,6 +426,34 @@ export default function Navbar() {
               </Link>
             </li>
 
+            {/* =================================================
+                CONTACT (Direct Link, No Dropdown)
+            ================================================= */}
+            <li>
+              <Link
+                href="/contact"
+                className={navLinkClass("/contact")}
+                aria-current={
+                  isActive("/contact") ? "page" : undefined
+                }
+              >
+                Contact
+
+                {isActive("/contact") && (
+                  <span
+                    className="
+                      absolute
+                      left-0
+                      -bottom-2
+                      w-full
+                      h-[2px]
+                      rounded-full
+                      bg-cyan-400
+                    "
+                  />
+                )}
+              </Link>
+            </li>
           </ul>
         </nav>
 
@@ -400,16 +467,18 @@ export default function Navbar() {
             relative
             z-30
             lg:hidden
-            text-white
-            text-2xl
             p-2
+            text-2xl
+            text-white
             rounded-lg
             hover:text-cyan-400
             hover:bg-white/5
             transition-all
             duration-300
           "
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-label={
+            isMenuOpen ? "Close navigation" : "Open navigation"
+          }
           aria-expanded={isMenuOpen}
           aria-controls="mobile-navigation"
         >
@@ -424,8 +493,10 @@ export default function Navbar() {
           className={`
             lg:hidden
             fixed
-            inset-0
             top-24
+            left-0
+            right-0
+            bottom-0
             z-[9998]
             bg-[#08111f]
             backdrop-blur-2xl
@@ -438,32 +509,23 @@ export default function Navbar() {
             }
           `}
         >
-          <nav className="h-full flex items-start justify-center pt-16">
-            <ul className="flex flex-col items-center gap-8 text-xl">
-
+          <nav className="flex justify-center pt-16">
+            <ul
+              className="
+                flex
+                flex-col
+                items-center
+                gap-8
+              "
+            >
               {/* HOME */}
               <li>
                 <Link
                   href="/"
                   onClick={() => setIsMenuOpen(false)}
                   className={mobileLinkClass("/")}
-                  aria-current={isActive("/") ? "page" : undefined}
                 >
                   Home
-
-                  {isActive("/") && (
-                    <span
-                      className="
-                        absolute
-                        -bottom-2
-                        left-0
-                        w-full
-                        h-[2px]
-                        rounded-full
-                        bg-cyan-400
-                      "
-                    />
-                  )}
                 </Link>
               </li>
 
@@ -473,23 +535,8 @@ export default function Navbar() {
                   href="/about"
                   onClick={() => setIsMenuOpen(false)}
                   className={mobileLinkClass("/about")}
-                  aria-current={isActive("/about") ? "page" : undefined}
                 >
                   About
-
-                  {isActive("/about") && (
-                    <span
-                      className="
-                        absolute
-                        -bottom-2
-                        left-0
-                        w-full
-                        h-[2px]
-                        rounded-full
-                        bg-cyan-400
-                      "
-                    />
-                  )}
                 </Link>
               </li>
 
@@ -499,23 +546,8 @@ export default function Navbar() {
                   href="/products"
                   onClick={() => setIsMenuOpen(false)}
                   className={mobileLinkClass("/products")}
-                  aria-current={isActive("/products") ? "page" : undefined}
                 >
                   Products
-
-                  {isActive("/products") && (
-                    <span
-                      className="
-                        absolute
-                        -bottom-2
-                        left-0
-                        w-full
-                        h-[2px]
-                        rounded-full
-                        bg-cyan-400
-                      "
-                    />
-                  )}
                 </Link>
               </li>
 
@@ -525,23 +557,8 @@ export default function Navbar() {
                   href="/news"
                   onClick={() => setIsMenuOpen(false)}
                   className={mobileLinkClass("/news")}
-                  aria-current={isActive("/news") ? "page" : undefined}
                 >
                   News
-
-                  {isActive("/news") && (
-                    <span
-                      className="
-                        absolute
-                        -bottom-2
-                        left-0
-                        w-full
-                        h-[2px]
-                        rounded-full
-                        bg-cyan-400
-                      "
-                    />
-                  )}
                 </Link>
               </li>
 
@@ -551,30 +568,24 @@ export default function Navbar() {
                   href="/research"
                   onClick={() => setIsMenuOpen(false)}
                   className={mobileLinkClass("/research")}
-                  aria-current={isActive("/research") ? "page" : undefined}
                 >
                   Research
-
-                  {isActive("/research") && (
-                    <span
-                      className="
-                        absolute
-                        -bottom-2
-                        left-0
-                        w-full
-                        h-[2px]
-                        rounded-full
-                        bg-cyan-400
-                      "
-                    />
-                  )}
                 </Link>
               </li>
 
+              {/* CONTACT */}
+              <li>
+                <Link
+                  href="/contact"
+                  onClick={() => setIsMenuOpen(false)}
+                  className={mobileLinkClass("/contact")}
+                >
+                  Contact
+                </Link>
+              </li>
             </ul>
           </nav>
         </div>
-
       </div>
     </header>
   );
