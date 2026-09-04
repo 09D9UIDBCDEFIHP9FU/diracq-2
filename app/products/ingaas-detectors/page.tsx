@@ -1,49 +1,46 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
 import Link from "next/link";
 import Image from "next/image";
 import { FaClock, FaChartLine, FaShieldAlt } from "react-icons/fa";
 
-export default function SPADModulesPage() {
+export default function InGaAsDetectorsPage() {
   return (
     <>
-      <Navbar />
-
       <main className="min-h-screen bg-[#0A0F1E] text-white pt-24 overflow-hidden">
 
         {/* ===== HERO SECTION ===== */}
-        <section className="relative overflow-hidden py-24 lg:py-28">
+        <section className="relative overflow-hidden py-10 md:py-12 lg:py-16">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(0,200,255,0.08),transparent_40%)]" />
           <div className="absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-cyan-500/5 blur-[120px]" />
           <div className="absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full bg-blue-500/5 blur-[120px]" />
 
-          <div className="relative z-10 mx-auto w-full max-w-[1400px] items-center gap-16 px-6 lg:grid lg:grid-cols-2 lg:px-10">
+          <div className="relative z-10 mx-auto grid w-full max-w-[1400px] items-center gap-12 px-6 md:grid-cols-[1.05fr_0.95fr] md:gap-10 lg:gap-16 lg:px-10">
             {/* Left Content */}
             <div>
               <span className="text-sm font-semibold uppercase tracking-[5px] text-cyan-400">
                 DIRACQ PRODUCTS
               </span>
 
-              <h1 className="mt-6 text-4xl font-bold leading-tight md:text-5xl lg:text-6xl xl:text-7xl">
-                SPAD
+              <h1 className="mt-4 text-4xl font-bold leading-[0.98] md:text-5xl lg:text-6xl xl:text-7xl">
+                InGaAs
                 <span className="block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                  Modules
+                  Detectors
                 </span>
               </h1>
 
-              <p className="mt-6 max-w-xl text-base leading-7 text-gray-400 md:text-lg">
-                Silicon-based single photon avalanche diode modules optimized for
-                visible wavelengths, offering low dark count rates and high timing
-                precision for photon counting applications.
+              <p className="mt-4 max-w-xl text-base leading-7 text-gray-400 md:text-lg">
+                High-performance indium gallium arsenide detectors engineered
+                for sensitive near-infrared photon detection and advanced
+                quantum photonics applications.
               </p>
 
-              <div className="mt-10 flex flex-wrap gap-4">
+              <div className="mt-7 flex flex-wrap gap-4">
                 <Link
                   href="/contact"
                   className="rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 px-7 py-4 font-semibold transition hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25"
                 >
-                  Request Quote
+                  Contact Us
                 </Link>
 
                 <Link
@@ -54,31 +51,16 @@ export default function SPADModulesPage() {
                 </Link>
               </div>
 
-              {/* Key Specs */}
-              <div className="mt-10 flex flex-wrap gap-6">
-                <div>
-                  <p className="text-2xl font-bold text-cyan-400">400-1100 nm</p>
-                  <p className="text-sm text-gray-500">Wavelength Range</p>
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-cyan-400">85%</p>
-                  <p className="text-sm text-gray-500">Photon Detection Efficiency</p>
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-cyan-400">50 cps</p>
-                  <p className="text-sm text-gray-500">Dark Count Rate</p>
-                </div>
-              </div>
             </div>
 
             {/* Right - Image */}
-            <div className="relative mt-10 lg:mt-0">
+            <div className="relative mt-2 md:mt-0">
               <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 rounded-3xl blur-3xl" />
 
               <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-cyan-500/10 to-blue-600/10">
                 <Image
-                  src="https://images.unsplash.com/photo-1581092335875-2c4a4fa1ae6c?w=800&h=600&fit=crop&crop=center"
-                  alt="SPAD Modules - DIRACQ"
+                  src="/images/ingaas-detector-chip.jpg"
+                  alt="Semiconductor detector chip used in InGaAs photon detection systems"
                   width={800}
                   height={600}
                   className="h-auto w-full object-cover"
@@ -87,11 +69,11 @@ export default function SPADModulesPage() {
 
                 {/* Floating Badges */}
                 <div className="absolute -top-3 -right-3 rounded-lg bg-cyan-500/20 backdrop-blur-sm border border-cyan-400/30 px-3 py-1.5">
-                  <span className="text-xs text-cyan-300 font-mono">Visible</span>
+                  <span className="text-xs text-cyan-300 font-mono">Near-IR</span>
                 </div>
 
                 <div className="absolute -bottom-3 -left-3 rounded-lg bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 px-3 py-1.5">
-                  <span className="text-xs text-blue-300 font-mono">High Precision</span>
+                  <span className="text-xs text-blue-300 font-mono">High Sensitivity</span>
                 </div>
               </div>
 
@@ -111,7 +93,7 @@ export default function SPADModulesPage() {
             </span>
 
             <h2 className="mt-4 text-3xl font-bold text-white md:text-4xl">
-              Visible wavelength photon
+              Near-infrared photon
               <br />
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                 detection technology
@@ -119,27 +101,27 @@ export default function SPADModulesPage() {
             </h2>
 
             <p className="mt-4 max-w-2xl text-gray-400">
-              Our SPAD modules are engineered for high-precision photon counting
-              in visible wavelengths, offering exceptional timing resolution and
-              low noise performance.
+              Our InGaAs detectors are engineered for reliable near-infrared
+              photon counting, combining high sensitivity with low noise and
+              precise timing performance.
             </p>
 
             <div className="mt-12 grid gap-6 md:grid-cols-3">
               {[
                 {
                   icon: <FaClock className="text-2xl" />,
-                  title: "Picosecond Timing",
-                  desc: "Excellent timing resolution for accurate photon arrival detection in TCSPC applications.",
+                  title: "Near-IR Response",
+                  desc: "Optimized sensitivity across the near-infrared spectrum for demanding photon-counting systems.",
                 },
                 {
                   icon: <FaChartLine className="text-2xl" />,
-                  title: "High Detection Efficiency",
-                  desc: "85% photon detection efficiency at peak wavelengths for reliable single-photon counting.",
+                  title: "High Sensitivity",
+                  desc: "Reliable detection performance for weak optical signals in quantum and sensing applications.",
                 },
                 {
                   icon: <FaShieldAlt className="text-2xl" />,
-                  title: "Low Dark Count Rate",
-                  desc: "Minimal dark count rates (<50 cps) ensuring high signal-to-noise ratio.",
+                  title: "Low Noise",
+                  desc: "Low-noise operation improves signal quality and supports accurate photon measurements.",
                 },
               ].map((item, index) => (
                 <div
@@ -172,27 +154,27 @@ export default function SPADModulesPage() {
               Why choose our
               <br />
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                SPAD Modules
+                InGaAs Detectors
               </span>
             </h2>
 
             <div className="mt-12 grid gap-6 md:grid-cols-2">
               {[
                 {
-                  title: "Visible Wavelengths",
-                  desc: "Optimized for 400–1100 nm wavelength range for visible photon counting applications.",
+                  title: "Near-Infrared Wavelengths",
+                  desc: "Designed for 900-1700 nm applications including fiber optics, quantum communication, and sensing.",
                 },
                 {
-                  title: "High PDE",
-                  desc: "85% photon detection efficiency at peak wavelengths for reliable single-photon detection.",
+                  title: "High Sensitivity",
+                  desc: "Sensitive response to weak optical signals for dependable single-photon detection.",
                 },
                 {
-                  title: "Low DCR",
-                  desc: "Dark count rates as low as 50 cps for accurate photon counting in low-light conditions.",
+                  title: "Low Noise",
+                  desc: "Low-noise performance helps preserve measurement accuracy in low-light conditions.",
                 },
                 {
-                  title: "Picosecond Resolution",
-                  desc: "Excellent timing jitter performance for precise photon arrival detection.",
+                  title: "Fast Timing",
+                  desc: "Fast response supports precise photon arrival detection and time-correlated measurements.",
                 },
               ].map((feature) => (
                 <div
@@ -215,7 +197,7 @@ export default function SPADModulesPage() {
             </span>
 
             <h2 className="mt-4 text-3xl font-bold text-white md:text-4xl">
-              Where our SPAD modules
+              Where our InGaAs detectors
               <br />
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                 make an impact
@@ -226,15 +208,15 @@ export default function SPADModulesPage() {
               {[
                 {
                   title: "Quantum Communication",
-                  desc: "Single photon detection for quantum key distribution (QKD) systems.",
+                  desc: "Near-infrared single-photon detection for quantum key distribution and secure optical links.",
                 },
                 {
-                  title: "LiDAR & Sensing",
-                  desc: "Photon-counting LiDAR for high-resolution 3D mapping and autonomous systems.",
+                  title: "Fiber-Optic Networks",
+                  desc: "Sensitive optical monitoring and signal analysis across modern fiber communication systems.",
                 },
                 {
                   title: "Scientific Research",
-                  desc: "Time-correlated single photon counting (TCSPC) and quantum optics research.",
+                  desc: "Time-correlated single-photon counting and quantum optics experiments in the infrared.",
                 },
               ].map((app) => (
                 <div
@@ -257,8 +239,8 @@ export default function SPADModulesPage() {
                 Ready to advance your research?
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-gray-400">
-                Contact our team for more information about our SPAD modules
-                and custom configurations for your application.
+                Contact our team to learn more about InGaAs detector options
+                and configurations for your application.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-4">
                 <Link

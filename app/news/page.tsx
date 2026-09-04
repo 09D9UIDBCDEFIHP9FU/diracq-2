@@ -297,7 +297,7 @@ export default function News() {
 
               <AnimatePresence mode="popLayout">
 
-                {visibleArticles.map((article) => (
+                {visibleArticles.map((article, index) => (
 
                   <motion.article
                     key={article.id}
@@ -320,8 +320,14 @@ export default function News() {
 
                       <div className="relative h-56 w-full overflow-hidden bg-[#172033]">
 
-                        {article.image ? (
-
+                        {/* Check if it's the first article and add a specific image */}
+                        {index === 0 ? (
+                          <img
+                            src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&auto=format&fit=crop&q=60"
+                            alt="DiracQ Analytics Module"
+                            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                        ) : article.image ? (
                           <img
                             src={article.image}
                             alt={
@@ -330,15 +336,12 @@ export default function News() {
                             }
                             className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                           />
-
                         ) : (
-
                           <div className="flex h-full w-full items-center justify-center bg-[#172033]">
                             <span className="text-sm text-gray-500">
                               DIRACQ Systems
                             </span>
                           </div>
-
                         )}
 
                         {/* IMAGE OVERLAY */}

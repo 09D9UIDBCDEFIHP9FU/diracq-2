@@ -1,34 +1,32 @@
-import Navbar from "@/components/Navbar";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function TunableLasersPage() {
   return (
     <>
-      <Navbar />
-
       <main className="min-h-screen bg-[#08111f] text-white pt-24">
-        <section className="relative overflow-hidden py-24 lg:py-32">
+        <section className="relative overflow-hidden py-10 md:py-12 lg:py-16">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(0,200,255,0.14),transparent_35%)]" />
 
-          <div className="relative z-10 mx-auto grid w-full max-w-[1400px] items-center gap-16 px-6 lg:grid-cols-2 lg:px-10">
+          <div className="relative z-10 mx-auto grid w-full max-w-[1400px] items-center gap-8 px-6 sm:grid-cols-[1.05fr_0.95fr] sm:gap-8 lg:gap-16 lg:px-10">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[5px] text-cyan-400">
                 DIRACQ PRODUCTS
               </p>
 
-              <h1 className="mt-6 text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">
+              <h1 className="mt-4 text-5xl font-bold leading-[0.98] md:text-6xl lg:text-7xl">
                 Tunable
                 <span className="block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                   Lasers
                 </span>
               </h1>
 
-              <p className="mt-8 max-w-xl text-lg leading-8 text-gray-400">
+              <p className="mt-4 max-w-xl text-base leading-7 text-gray-400 md:text-lg md:leading-8">
                 Precision tunable laser systems engineered for flexible
                 wavelength control and advanced optical applications.
               </p>
 
-              <div className="mt-10 flex flex-wrap gap-4">
+              <div className="mt-7 flex flex-wrap gap-4">
                 <Link
                   href="/contact"
                   className="rounded-full bg-cyan-500 px-7 py-4 font-semibold transition hover:scale-105 hover:bg-cyan-400"
@@ -45,16 +43,37 @@ export default function TunableLasersPage() {
               </div>
             </div>
 
-            <div className="relative">
-              <div className="relative aspect-square overflow-hidden rounded-[32px] border border-cyan-400/20 bg-gradient-to-br from-cyan-500/10 to-blue-600/10">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,200,255,0.15),transparent_50%)]" />
+            <div className="relative mt-2 sm:mt-0">
+              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 blur-3xl" />
 
-                <div className="absolute left-1/2 top-1/2 h-px w-[75%] -translate-x-1/2 bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
+              <div className="relative overflow-hidden rounded-3xl border border-cyan-400/20 bg-slate-900 shadow-2xl shadow-cyan-950/40">
+                <Image
+                  src="/images/tunable-laser.jpg"
+                  alt="Optical technology equipment for tunable laser systems"
+                  width={800}
+                  height={600}
+                  className="h-auto w-full object-cover transition duration-700 hover:scale-105"
+                  unoptimized
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#08111f]/85 via-transparent to-cyan-400/10" />
 
-                <div className="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-400/40 bg-cyan-400/10 shadow-[0_0_70px_rgba(0,200,255,0.2)]" />
-
-                <div className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400 shadow-[0_0_35px_rgba(0,200,255,0.8)]" />
+                <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[3px] text-cyan-300">
+                      Optical control
+                    </p>
+                    <p className="mt-2 text-lg font-semibold text-white">
+                      Tuned for precision
+                    </p>
+                  </div>
+                  <span className="rounded-full border border-cyan-300/30 bg-cyan-400/15 px-3 py-1.5 text-xs font-medium text-cyan-200 backdrop-blur-sm">
+                    LASER
+                  </span>
+                </div>
               </div>
+
+              <div className="absolute -left-2 -top-2 h-9 w-9 rounded-tl-xl border-l-2 border-t-2 border-cyan-300/70" />
+              <div className="absolute -bottom-2 -right-2 h-9 w-9 rounded-br-xl border-b-2 border-r-2 border-cyan-300/70" />
             </div>
           </div>
         </section>

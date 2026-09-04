@@ -1,13 +1,11 @@
-import Navbar from "@/components/Navbar";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function SnspdSystemsPage() {
   return (
     <>
-      <Navbar />
-
       <main className="min-h-screen bg-[#08111f] text-white pt-24">
-        <section className="relative overflow-hidden py-24 lg:py-32">
+        <section className="relative overflow-hidden pt-16 pb-16 lg:pt-24 lg:pb-24">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(0,200,255,0.14),transparent_35%)]" />
 
           <div className="relative z-10 mx-auto grid w-full max-w-[1400px] items-center gap-16 px-6 lg:grid-cols-2 lg:px-10">
@@ -16,20 +14,20 @@ export default function SnspdSystemsPage() {
                 DIRACQ PRODUCTS
               </p>
 
-              <h1 className="mt-6 text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">
+              <h1 className="mt-4 text-5xl font-bold leading-[0.98] md:text-6xl lg:text-7xl">
                 SNSPD
                 <span className="block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                   Systems
                 </span>
               </h1>
 
-              <p className="mt-8 max-w-xl text-lg leading-8 text-gray-400">
+              <p className="mt-5 max-w-xl text-lg leading-8 text-gray-400">
                 Ultra-sensitive superconducting nanowire single-photon
                 detector systems engineered for advanced quantum and photonics
                 research.
               </p>
 
-              <div className="mt-10 flex flex-wrap gap-4">
+              <div className="mt-8 flex flex-wrap gap-4">
                 <Link
                   href="/contact"
                   className="rounded-full bg-cyan-500 px-7 py-4 font-semibold transition hover:scale-105 hover:bg-cyan-400"
@@ -47,17 +45,36 @@ export default function SnspdSystemsPage() {
             </div>
 
             <div className="relative">
-              <div className="relative aspect-square overflow-hidden rounded-[32px] border border-cyan-400/20 bg-gradient-to-br from-cyan-500/10 to-blue-600/10">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,200,255,0.2),transparent_45%)]" />
+              <div className="absolute -inset-5 rounded-[40px] bg-cyan-500/15 blur-3xl" />
 
-                <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-400/20" />
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[32px] border border-cyan-400/25 bg-slate-900 shadow-2xl shadow-cyan-950/40">
+                <Image
+                  src="https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?w=1200&q=85"
+                  alt="Photon detection equipment in a research laboratory"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover transition duration-700 hover:scale-105"
+                  unoptimized
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#08111f]/85 via-transparent to-cyan-400/10" />
 
-                <div className="absolute left-1/2 top-1/2 h-48 w-48 -translate-x-1/2 -translate-y-1/2 rounded-full border border-blue-400/30" />
-
-                <div className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 shadow-[0_0_100px_rgba(0,200,255,0.25)]" />
-
-                <div className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow-[0_0_30px_rgba(255,255,255,0.8)]" />
+                <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between gap-4">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[3px] text-cyan-300">
+                      Photon detection
+                    </p>
+                    <p className="mt-2 text-lg font-semibold text-white">
+                      Built for quantum precision
+                    </p>
+                  </div>
+                  <span className="rounded-full border border-cyan-300/30 bg-cyan-400/15 px-3 py-1.5 text-xs font-medium text-cyan-200 backdrop-blur-sm">
+                    SNSPD
+                  </span>
+                </div>
               </div>
+
+              <div className="absolute -left-3 -top-3 h-10 w-10 rounded-tl-xl border-l-2 border-t-2 border-cyan-300/70" />
+              <div className="absolute -bottom-3 -right-3 h-10 w-10 rounded-br-xl border-b-2 border-r-2 border-cyan-300/70" />
             </div>
           </div>
         </section>

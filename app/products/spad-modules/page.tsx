@@ -1,35 +1,33 @@
-import Navbar from "@/components/Navbar";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function SpadModulesPage() {
   return (
     <>
-      <Navbar />
-
       <main className="min-h-screen bg-[#08111f] text-white pt-24">
         {/* Hero */}
-        <section className="relative overflow-hidden py-24 lg:py-32">
+        <section className="relative overflow-hidden py-10 md:py-12 lg:py-16">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_30%,rgba(0,200,255,0.15),transparent_35%)]" />
 
-          <div className="relative z-10 mx-auto grid w-full max-w-[1400px] items-center gap-16 px-6 lg:grid-cols-2 lg:px-10">
+          <div className="relative z-10 mx-auto grid w-full max-w-[1400px] items-center gap-12 px-6 md:grid-cols-[1.05fr_0.95fr] md:gap-10 lg:gap-16 lg:px-10">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[5px] text-cyan-400">
                 DIRACQ PRODUCTS
               </p>
 
-              <h1 className="mt-6 text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">
+              <h1 className="mt-4 text-5xl font-bold leading-[0.98] md:text-6xl lg:text-7xl">
                 SPAD
                 <span className="block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                   Modules
                 </span>
               </h1>
 
-              <p className="mt-8 max-w-xl text-lg leading-8 text-gray-400">
+              <p className="mt-4 max-w-xl text-base leading-7 text-gray-400 md:text-lg md:leading-8">
                 High-performance single-photon avalanche diode modules designed
                 for precise photon detection and advanced quantum applications.
               </p>
 
-              <div className="mt-10 flex flex-wrap gap-4">
+              <div className="mt-7 flex flex-wrap gap-4">
                 <Link
                   href="/contact"
                   className="rounded-full bg-cyan-500 px-7 py-4 font-semibold text-white transition hover:scale-105 hover:bg-cyan-400"
@@ -47,18 +45,37 @@ export default function SpadModulesPage() {
             </div>
 
             {/* Visual */}
-            <div className="relative">
-              <div className="relative aspect-square overflow-hidden rounded-[32px] border border-cyan-400/20 bg-gradient-to-br from-cyan-500/10 to-blue-600/10">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,200,255,0.18),transparent_50%)]" />
+            <div className="relative mt-2 md:mt-0">
+              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 blur-3xl" />
 
-                <div className="absolute left-1/2 top-1/2 h-44 w-44 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-400/40 bg-cyan-400/10 shadow-[0_0_80px_rgba(0,200,255,0.2)]" />
+              <div className="relative overflow-hidden rounded-3xl border border-cyan-400/20 bg-slate-900 shadow-2xl shadow-cyan-950/40">
+                <Image
+                  src="/images/spad-detector-module.jpg"
+                  alt="Advanced electronics used in SPAD photon detection systems"
+                  width={800}
+                  height={600}
+                  className="h-auto w-full object-cover transition duration-700 hover:scale-105"
+                  unoptimized
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#08111f]/85 via-transparent to-cyan-400/10" />
 
-                <div className="absolute left-1/2 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400 shadow-[0_0_30px_rgba(0,200,255,0.8)]" />
-
-                <div className="absolute left-1/2 top-1/2 h-px w-4/5 -translate-x-1/2 bg-cyan-400/20" />
-
-                <div className="absolute left-1/2 top-1/2 h-4/5 w-px -translate-y-1/2 bg-cyan-400/20" />
+                <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[3px] text-cyan-300">
+                      Photon detection
+                    </p>
+                    <p className="mt-2 text-lg font-semibold text-white">
+                      Fast and precise counting
+                    </p>
+                  </div>
+                  <span className="rounded-full border border-cyan-300/30 bg-cyan-400/15 px-3 py-1.5 text-xs font-medium text-cyan-200 backdrop-blur-sm">
+                    SPAD
+                  </span>
+                </div>
               </div>
+
+              <div className="absolute -left-2 -top-2 h-9 w-9 rounded-tl-xl border-l-2 border-t-2 border-cyan-300/70" />
+              <div className="absolute -bottom-2 -right-2 h-9 w-9 rounded-br-xl border-b-2 border-r-2 border-cyan-300/70" />
             </div>
           </div>
         </section>
